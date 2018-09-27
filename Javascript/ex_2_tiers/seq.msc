@@ -1,0 +1,34 @@
+msc {
+
+  wordwraparcs=true, hscale=2;
+
+  Client,Server;
+
+  ... [ label = "Lancement du serveur et du client" ];
+
+  Server box Server [ label="acc = 0" ];
+
+  Client->Server [ label="status" ];
+  Server->Client [ label="0" ];
+
+  Client->Server [ label="add 10" ];
+  Server->Server [ label="acc = acc + 10" ];
+  Server->Client [ label="10" ];
+
+  Client->Server [ label="sub 2" ];
+  Server->Server [ label="acc = acc - 2" ];
+  Server->Client [ label="8" ];
+
+  Client->Server [ label="div 2" ];
+  Server->Server [ label="acc = acc / 2" ];
+  Server->Client [ label="4" ];
+
+  Client->Server [ label="mul 5" ];
+  Server->Server [ label="acc = acc * 5" ];
+  Server->Client [ label="20" ];
+
+  Client->Server [ label="reset" ];
+  Server->Server [ label="acc = 0" ];
+  Server->Client [ label="0" ];
+
+}
