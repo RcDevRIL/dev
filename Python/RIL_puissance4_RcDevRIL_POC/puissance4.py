@@ -52,7 +52,13 @@ sizeRed = red.get_size()
 
 def choix_col(x,y):
     return (int)((x-16)/97)
-
+def choix_ligne(pawns,col):
+    for i in range(5,-1,-1):
+        if(not pawns[i][col]==0):
+            continue
+        else:
+            break
+    return i
 def draw_pawns(pawns):
     for i in range(len(pawns)):
         for j in range(len(pawns[i])):
@@ -92,15 +98,9 @@ while (nbTours<42 and not won):
                 x,y = pygame.mouse.get_pos()
                 col = choix_col(x,y)
                 joueur = yel_or_red(nbTours)
-                M[5][col] = joueur
+                ligne = choix_ligne(M,col)
+                M[ligne][col] = joueur
                 nbTours = nbTours+1
                 
-                
-#            if event.button == 3:#clic droit
-#                x_mouse=event.pos[0]
-#                y_mouse=event.pos[1]
-#                
-#                screen.blit(yel,coord_M[i][0])
-#                i=i+1
                 
 screen = pygame.display.quit()
