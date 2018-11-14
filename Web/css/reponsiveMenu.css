@@ -1,0 +1,43 @@
+#menu{
+    font-family: fantasy;
+    font-size: 1.5em;
+    background-color:grey;
+    height:50px;
+    width:150px;
+}
+#text{
+    font-family: fantasy;
+    font-style: italic;
+}
+#links{
+    display: none;
+}
+#menuButton{
+    height:100%;
+    width:100%;
+    display: block;
+}
+#menuButton:focus + #links{
+    display: inline-block;
+}
+
+@media (min-width: 700px){
+    #menu{
+        font-family: fantasy;
+        font-size: 1.5em;
+        background-color:grey;
+        height:auto;
+        width:auto;
+    }
+    #text{
+        font-family: fantasy;
+        font-style: italic;
+    }
+    #links{
+        display: inline-table;
+    }
+    #menuButton{
+        display: none;
+    }
+    
+}

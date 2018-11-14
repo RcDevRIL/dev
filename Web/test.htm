@@ -3,15 +3,95 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Mon premier titre! éééénooorme!!!</title>
+  <title>Tests des balises HTML</title>
   <meta name="author" content="RcDevRIL">
   <meta name="description" content="Ce document web est le résultat du cours fait au CESI de Dijon">
+  <link href="./css/stylesheet.css" rel="stylesheet">
 </head>
 
 <body>
     <p>
         <h1>Hello, world!</h1>
     </p>
+    <div>
+        Ceci est une liste non ordonnée
+        <ul>
+            <li>Elem1</li>
+            <li>Elem2</li>
+        </ul>
+        Celle-ci l'est
+        <ol>
+            <li>Elem1</li>
+            <li>Elem2</li>
+        </ol>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Coucou</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1cellule</td><td>2cellules</td>
+                </tr>
+                <tr>
+                    <td>Deuxième</td><td>ligne</td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td>au revoir</td>
+                </tr>
+            </tfoot>
+            <caption>test de la balise table</caption>
+        </table>
+    </div>
+    <div>
+        <h2>Simple login form</h2>
+        <form action="/myphp.php" method="GET">
+            <fieldset>Identifiants</br>
+                <input type="text" title="username" placeholder="username" />
+                <input type="password" title="password" placeholder="password1313" />
+                <button type="submit" class="btn">Login</button>
+            </fieldset>
+            <fieldset>Types d'input:</br>
+                <input type="url" />
+                <input type="checkbox" title="Checkbox"/>
+            </fieldset>
+        </form>
+        <h2>Other simple form</h2>
+        <form action="/doc.php" method="POST">
+            <div>
+                <label for="nom">Nom:</label>
+                <input type="text" name="Nom" id="nom"/>
+            </div>
+            <div>
+                <label for="tel">Tél:</label>
+                <input type="tel" name="Tél" id="tel"/>
+            </div>
+            <div>
+                <label for="avis">Avis:</label>
+                <textarea name="avis" id="avis"></textarea>
+            </div>
+            <button type="reset">RAZ</button>
+            <button type="submit">Envoyer</button>
+        </form>
+
+    </div>
+    <div>
+        <h1>Balises audio/vidéo</h1>
+    </br>
+        <h2>Sons</h2>
+        <audio controls="controls">
+            <source src="toto.wav" type="audio/wav">
+        </audio>
+        <h2>Vidéos</h2>
+        <video controls...........></video><!--à voir sur internet comment faire-->
+    </div>
 </body>
 
 </html>
