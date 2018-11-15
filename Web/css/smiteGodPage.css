@@ -1,0 +1,87 @@
+body{
+    background: #071425;
+}
+
+#menu{
+    height: 50px;
+    width:100%;
+    margin: auto;
+    display: inline-flex;
+    background-color: #05111e;
+    font-family: roboto,sans-serif !important;
+    font-size: 0.75em;
+    box-sizing: border-box;
+    color: whitesmoke;
+    letter-spacing: 1.5px;
+}
+#home{
+    width:155px;
+    height:100%;
+}
+.home-link{
+    background-image: url("../Ressource/smite-logo.png");
+    background-position: 50%;
+    background-size:100%;
+    background-repeat: no-repeat;
+    width: 155px;
+    height: 100%;
+    display: flex;
+}
+#menu-links{
+    display: inline-flex;
+    padding:0px 10px;
+    width:740px;
+    text-align: center;
+    align-items: center;
+    transition: color .25s ease-in-out;
+}
+#first-links{
+    width:540px;
+}
+#menu-links:hover{
+    color: saddlebrown;
+}
+.dropdown{
+    display: none;
+    transition: display .5s;
+}
+#more-link:hover  a {
+    display: inline-flex;
+}
+.header{
+    display: flex;
+    font-family: roboto,sans-serif !important;
+    text-align:center;
+    box-sizing: border-box;
+    color: whitesmoke;
+    letter-spacing: 1.5px;
+    height:10px;
+}
+h4{
+    position: relative;
+    height:auto;
+    width:100%;
+    font-family: Penumbra Half Serif;
+    font-size:3.2em;
+}
+h4::after{
+    position: absolute;
+    top:calc(50% + 25px);
+    right:5px;
+    content:" "; 
+    align-content: center;
+    background: linear-gradient(90deg,#85784a 60%,transparent);
+    height:2px;
+    width:43%;
+    box-sizing: border-box;
+}
+h4::before{
+    position: absolute;
+    top:calc(50% + 25px);
+    left:5px;
+    content:" ";
+    background: linear-gradient(270deg,#85784a 60%,transparent);
+    height:2px;
+    width:43%;
+    box-sizing: border-box;
+}
