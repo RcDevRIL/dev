@@ -1,0 +1,35 @@
+body{
+    background-color: steelblue;
+}
+#menu{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3.5em;
+    text-align: center;
+    justify-content: center;
+}
+#header{
+    position: relative;
+    border : 2px black solid;
+}
+#content{
+    position: relative;
+    display: inline-flex;
+}
+@media (min-width: 700px){
+    #menu{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 3.5em;
+        text-align: center;
+        justify-content: center;
+        float:right;
+    }
+    #header{
+        position: relative;
+        border : 2px black solid;
+    }
+    #content{
+        position: relative;
+        display: inline-flex;
+    }
+    
+}
