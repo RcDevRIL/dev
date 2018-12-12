@@ -1,0 +1,50 @@
+
+h1{
+    margin: 0px 700px ;
+}
+#slideContent{
+    width: 800px;
+    height: 450px;
+}
+#slideWrapper{
+    position: relative;
+    top:25px;
+    left:350px;
+    display: inline-block;
+    height: 500px;
+    width: 800px;
+
+}
+#slideContent img{
+    position: relative;
+    display:none;
+}
+#slideContent img.currentSlide {
+    display:inherit;
+}
+/* #img1 c'est le bouton(qui est une div pas un button) et img.currentSlide c'est l'image actuellement affichée */
+div#img1:hover img.currentSlide{
+    animation: animSlide 3s infinite linear;
+}
+@keyframes animSlide{
+    from{
+        transform : translateX(0%);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+#slideControl {
+    display: inline-flex;
+    margin-left:350px;
+}
+.rond{
+    margin-top:5px;
+    margin-left:5px;
+    width: 15px;
+    height: 15px;
+    background-color: grey;
+    border: solid black 1px;
+    border-radius: 50%;
+    position: relative;
+}

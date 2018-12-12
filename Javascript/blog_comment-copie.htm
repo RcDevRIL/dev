@@ -9,7 +9,7 @@
   <link href="./css/blog_comment.css" rel="stylesheet">
 </head>
   <body>
-    <div id="comment_principal">
+    <div id="comment_principal" class="lastComment">
       <div class="rond">
       </div>
       <div class="titre_auteur">
@@ -33,7 +33,21 @@
       <button type="reset" name="button1" id="reset" /*onclick="function"*/>Reset</button>
       <button type="submit" name="button2" id="submit" /*onclick="function"*/>Validate</button>
     </div>
+   
+    <template class="newComment">
+      <div id="other_comment">
+        <div class="rond">
+        </div>
+        <div class="titre_auteur">
+          Monsieur Zboub
+        </div>
+        <div class="commentaire_auteur">
+          Mon commentaire d'auteur tellement profond que je vous défend de contre dire mon blog bande de proletaire fumeur de marijuana ! Trouvez vous un travail bande de chômeur !
+        </div>
+      </div>
+    </template>
+ 
     <script type="text/javascript" src="./ex_blog_commentaire.js "></script>
-  </body>
-  
+   
+  </body>  
 </html>

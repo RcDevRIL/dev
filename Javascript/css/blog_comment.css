@@ -1,34 +1,53 @@
 #comment_principal{
-  width: 80%;
+  width: auto;
   height: 150px;
   border: solid black 1px;
   display: inline-block;
 }
 
 .titre_auteur{
+  position: relative;
+  top: -150px;
+  left: 160px;
   font-size: 22px;
-  margin-left: 170px;
+  height: 30px;
 }
 .commentaire_auteur{
-  margin-top: 10px;
-  margin-left: 170px;
+  position: relative;
+  top: -130px;
+  left: 150px;
+  max-width: 70%;
 }
-
+body{
+  display: block;
+  margin:0;
+  padding:0;
+}
 .rond{
   margin: 13px;
-  width: 120px;
-  height: 120px;
+  width: 125px;
+  height: 125px;
   background-color: cyan;
   border: solid white 1px;
   border-radius: 50%;
-  position: fixed;
+  position: relative;
 }
 
-.other_comment{
-
+#other_comment{
+  width: auto;
+  height: 150px;
+  border: solid black 1px;
+  display: inline-block;
 }
-
+#lastComment{
+  width: auto;
+  height: 150px;
+  border: solid black 1px;
+  display: inline-block;
+}
 .formulaire{
+  position: relative;
+  top:-60px;
   width: 80%;
   height: 190px;
   border: solid black 1px;

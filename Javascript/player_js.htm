@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Exo music player javascript</title>
+  <meta name="author" content="RcDevRIL">
+  <meta name="description" content="Ce document web est le résultat du cours fait au CESI de Dijon">
+  <link href="./css/player.css" rel="stylesheet">
+</head>
+<body>
+    <div id="trackList">
+        <ul>
+            <li>Musique 1</li>
+            <li>Musique 2</li>
+            <li>Musique 3</li>
+        </ul>
+    </div>
+    <div id="player">
+        <div class="controls">
+            <div id="action-play"><!--pas de retour a la ligne pour supprimer des petits blancs-->
+                <button id="btn-back"><i class="fas fa-backward"><img src="./resources/back.jpg"></img></i></button><button id="btn-play"><i class="fas fa-play"><img src="./resources/play.jpg"></img></i></button><button id="btn-next"><i class="fas fa-next"><img src="./resources/next.jpg"></img></i></button>
+            </div>
+        </div>
+        <div class="meta">
+            <div id="time">
+                <div id="timeleft" style="width:0%;"></div>
+            </div>
+            <div class="meta-time">
+                <div><span id="trackTitle"></span></div>
+                <div>
+                    <span id="currentTime">0:00</span>/<span id="duration">0:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="controls-tracks">
+        <div id="ctrl-btn">
+            <button id="btn-repeat"><i class="fas fa-redo"><img src="./resources/repeat.jpg"></img></i></button><button id="btn-random"><i class="fas fa-random"><img src="./resources/random.jpg"></img></i></button>
+        </div>
+    </div>
+</body>
+</html>
