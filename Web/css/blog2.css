@@ -1,0 +1,40 @@
+.wrapper{
+    width: 900px;
+    margin: auto;
+    background-color: wheat;
+}
+.header{
+    display: inline-flex;
+    border: 1px solid black;
+    background-color: burlywood
+}
+.logo{
+    
+    border: 1px solid black;
+}
+.menu{
+    
+    border: 1px solid black;
+}
+.blogName{
+
+    border: 1px solid black;
+    height: fit-content;
+}
+.content{
+    
+    border: 1px solid black;
+}
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 750px) {
+    .wrapper{
+        width: 500px;
+        margin: auto;
+        background-color: wheat;
+    }
+    .header{
+        display: inline-flex;
+        border: 1px solid black;
+        background-color: burlywood
+    }
+}

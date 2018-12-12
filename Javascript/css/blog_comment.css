@@ -1,0 +1,46 @@
+#comment_principal{
+  width: 80%;
+  height: 150px;
+  border: solid black 1px;
+  display: inline-block;
+}
+
+.titre_auteur{
+  font-size: 22px;
+  margin-left: 170px;
+}
+.commentaire_auteur{
+  margin-top: 10px;
+  margin-left: 170px;
+}
+
+.rond{
+  margin: 13px;
+  width: 120px;
+  height: 120px;
+  background-color: cyan;
+  border: solid white 1px;
+  border-radius: 50%;
+  position: fixed;
+}
+
+.other_comment{
+
+}
+
+.formulaire{
+  width: 80%;
+  height: 190px;
+  border: solid black 1px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.formulaire input{
+  width: 99%;
+}
+
+.plop{
+  height: 80px;
+  width: 99%;
+}
