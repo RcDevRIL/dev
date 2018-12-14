@@ -1,6 +1,6 @@
 package com.cesi;
 import java.nio.charset.StandardCharsets;
-import io.nats.jnats.*;
+import io.nats.jnats.Connection;
 
 /**
  * Hello world!
