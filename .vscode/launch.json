@@ -4,7 +4,7 @@
             "type": "java",
             "name": "CodeLens (Launch) - App",
             "request": "launch",
-            "mainClass": "com.cesi.App"
+            "mainClass": "app.App"
         }
     ]
 }
