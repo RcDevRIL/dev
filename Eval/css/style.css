@@ -1,0 +1,249 @@
+body{
+    margin: 15px;
+    padding: 10px;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+a{
+    color: #d35400;
+}
+a:hover{
+    text-decoration: underline;
+}
+a:visited{
+    color: #8e44ad;
+}
+h2{
+    font-size: 22px;
+}
+main{
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+}
+#col1{
+    position: absolute;
+    top: 250px;
+    width: 100%;
+    height: 250px;
+}
+#col2{
+    position: absolute;
+    width: 100%;
+    height: 250px;
+}
+#col3{
+    position: absolute;
+    top: 500px;
+    width: 100%;
+    height: 250px;
+}
+
+.menu{
+    display: inline-flex;
+    position: relative;
+    overflow: hidden;
+    background:#d8d8d8;
+    height: 55px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.menu > nav{
+    background: #c4c4c4;
+    position: fixed;
+    top: 100px;
+    bottom: 0;
+    left: -100%;
+    z-index: 1;
+    transition: all .5s;
+}
+
+.menu > nav > a{
+    display: block;
+    width: 180px;  
+    padding: 15px;
+    color: #d35400;
+    text-decoration: underline;
+}
+
+.toggle-menu{
+    right: 0;
+    height: 50px;
+    display: block;
+}
+
+.toggle-menu:focus ~ nav{
+    left: 0;
+}
+#logo{
+    position: absolute;
+    left:0;
+    width:28px;
+    height:28px;
+    border:1px black solid;
+    align-items: center;
+}
+/* Screen sizes [818px ; 1140px[ */
+@media (min-width: 818px) {
+
+}
+/* Screen sizes [1140px ; infini[ */
+@media(min-width:1140px){
+    .toggle-menu{
+        display: none;
+    }
+    #logo{
+        position: relative;
+        left:-100px;
+        width:28px;
+        height:28px;
+        border:1px black solid;
+        align-items: center;
+    }
+    #search{
+        position: relative;
+        left: 50px;
+    }
+    #logout{
+        position: relative;
+        left: 120px;
+    }
+    .menu{
+        display: flex;
+        position: relative;
+        background:#d8d8d8;
+        height: 50px;
+        width: 100%;
+    }
+    
+    .menu > nav{
+        background: #c4c4c4;
+        width: 400px;
+        height: 50px;
+        position: relative;
+        top: 0px; 
+        bottom: 0;
+        left: -260px;
+    }
+    
+    .menu > nav > a{
+        display: inline;
+        padding: 15px;
+        color: #d35400;
+        text-decoration: underline;
+    }
+    main{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    #col1{
+        position: relative;
+        top: 0;
+        order: 1;
+        width: 260px;
+        height: 500px;
+        margin: 15px;
+        border: 2px black solid;
+    }
+    
+    #card {
+        width: 260px;
+        height:500px;
+        background-color: blue;
+        position: relative;
+    }
+    #top {
+        height: 30%;
+        background-color: cornflowerblue;
+    }
+    #bottom {
+        height: 70%;
+        background-color: rgb(175, 173, 173);
+        position: relative;
+    }
+    #pseudo {
+        width:100%;
+        height:20%;
+        text-align: center;
+        position: absolute;
+        top:0;
+        left:5%;
+    }
+    #avatar{
+        background-color: beige;
+        width:64px;
+        height:64px;
+        border:2px solid blue;
+    
+        z-index: 1;
+        position: absolute;
+        top:23%;
+        left:15px;
+    }
+
+
+    #col2{
+        position: relative;
+        top: 0;
+        order: 2;
+        width: 520px;
+        height: 500px;
+        border: 2px black solid;
+    }
+
+    #new-comment{
+        display: flex;
+        width: 100%;
+        height: 30px;
+        border: 1px black solid;
+    }
+
+    .comment{
+        display: inline;
+        position: relative;
+        left:0;
+    }
+    .author-logo{
+        border: 1px black solid;
+    }
+    #col3{
+        position: relative;
+        top: 0;
+        order: 3;
+        width:260px;
+        height: 500px;
+        display: block;
+        margin: 15px;
+        border: 2px black solid;
+    }
+    
+
+    #new-friends{
+        display: block;
+        border: 2px black solid;
+        height: 335px;
+    }
+    #trends{
+        border: 2px black solid;
+        height: 135px;
+    }
+    #other-links{
+        border: 2px black solid;
+        height: 30px;
+    }
+    .friend-logo{
+        border: 1px black solid;
+        height: 48px;
+        width: 48px;
+    }
+}
