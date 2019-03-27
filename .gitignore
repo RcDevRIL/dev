@@ -6,6 +6,7 @@ design_patterns/
 Eval/
 libs/
 .vscode/
+react/
 *.jpg
 *.png
 *.zip
