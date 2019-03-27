@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace LedManager
 {
@@ -6,8 +7,12 @@ namespace LedManager
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            MyColor c = new MyColor();
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = false;
+                Spammer s = new Spammer();
+                s.start(1000000);
+            }).Start();
         }
     }
 }
