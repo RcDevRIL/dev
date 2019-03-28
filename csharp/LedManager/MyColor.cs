@@ -1,6 +1,17 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Windows;
+using System.Drawing;
+using System.ComponentModel;
+using System.Data;
+using System.IO;
 
-namespace LedManager{
+namespace LedManager
+{
     internal class MyColor
     {
         private byte[] rgb {get; set;} =  {0, 0, 0};
@@ -20,5 +31,24 @@ namespace LedManager{
         internal byte getRValue() => rgb[0];
         internal byte getGValue() => rgb[1];
         internal byte getBValue() => rgb[2];
+        public MyColor PickColor(string path, byte coordX, byte coordY)
+        {
+            MyColor myColor = new MyColor();
+            byte[] b = new byte[3];
+
+            // Create a Bitmap object from an image file.
+            Bitmap myBitmap = new Bitmap(path);
+
+            // Get the color of a pixel within myBitmap.
+            System.Drawing.Color pixelColor = myBitmap.GetPixel(coordX, coordY);
+
+            b[0] = pixelColor.R;
+            b[1] = pixelColor.G;
+            b[2] = pixelColor.B;
+
+            myColor.rgb = b;
+
+            return myColor;
+        }
     }
 }

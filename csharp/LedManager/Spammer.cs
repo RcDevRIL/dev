@@ -1,7 +1,7 @@
 using System;
-using System.Threading;
-using System.Net;
 using System.IO;
+using System.Net;
+using System.Threading;
 
 namespace LedManager
 {
@@ -9,7 +9,7 @@ namespace LedManager
     {
         //private static readonly HttpClient client = new HttpClient();
         public  static string Url = "https://dweet.io:443/dweet/quietly/for/";
-        public static byte Delay = 1;
+        public static byte Delay = 10;
         public static string Channel = "cesi-27032019";
 
         internal void start(int v)

@@ -1,0 +1,29 @@
+using System;
+using System.Drawing;
+using System.Threading;
+using System.Net;
+using System.IO;
+
+namespace LedManager
+{
+    internal class ImageReader
+    {
+        public Bitmap img;
+        public MyColor[] pixels;
+        public ImageReader() => img = (Bitmap) Bitmap.FromFile(@"D:\dev\csharp\LedManager\resources\logo.jpg");
+        public ImageReader(string imgName) => img = (Bitmap) Bitmap.FromFile(@"D:\dev\csharp\LedManager\resources\" + imgName);
+        public MyColor[] readImage()
+        {
+            pixels = new MyColor[256]();
+            for (int i = 0; i < img.Width; i++)
+            {
+                for (int j = 0; j < img.Height; j++)
+                {
+                    Color pixel = img.GetPixel(i,j);
+                    pixels[i] = pixel;
+                }
+            }
+            return pixels;
+        }
+    }
+}
