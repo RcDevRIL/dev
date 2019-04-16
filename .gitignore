@@ -8,6 +8,8 @@ libs/
 .vscode/
 react/
 csharp/TASC/
+.project
+.settings
 *.jpg
 *.png
 *.zip
@@ -15,4 +17,4 @@ csharp/TASC/
 *.jar
 *.rar
 
-.vscode/launch.json
+.vscode/
