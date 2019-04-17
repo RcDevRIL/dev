@@ -6,6 +6,7 @@ class ResumeAppBar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return new Container(
+      color: Theme.Colors.appBarGradientStart,
       padding: new EdgeInsets.only(
         top: MediaQuery
             .of(context)

@@ -10,6 +10,8 @@ react/
 csharp/TASC/
 .project
 .settings
+*.lock
+*.pbxproj
 *.jpg
 *.png
 *.zip

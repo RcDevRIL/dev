@@ -16,7 +16,8 @@ class PatientRow extends StatelessWidget{
       margin: const EdgeInsets.only(left: 24.0),
       child: new Hero(
         tag: 'patient-icon-${patient.id}',
-        child: new Container(
+        child:
+        new Container(
           width: 75.0,
           height: 75.0,
           decoration: new BoxDecoration(
@@ -76,11 +77,13 @@ class PatientRow extends StatelessWidget{
       height: 120.0,
       margin: const EdgeInsets.only(top: 16.0, bottom: 8.0),
       child: new FlatButton(
+        //différente méthode mais à utiliser plus tard pourquoi pas / base pour nouveau projet ?
+        //https://flutter.dev/docs/cookbook/navigation/passing-data
           onPressed: () => Navigator.pushNamed(
               context,
               PatientResumePage.routeName,
               arguments: PatientArgsForRoutes(
-                  '1'
+                  patient.id
               ),
           ),
           //_navigateTo(context, patient.id),

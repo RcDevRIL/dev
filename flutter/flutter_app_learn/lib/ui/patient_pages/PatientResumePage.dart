@@ -17,8 +17,8 @@ class PatientResumePage extends StatelessWidget{
     return new Scaffold(
       body: new Stack(
         children: <Widget>[
-          new PatientResumeBody(PatientDao.getPatientById(args.id)),
           new ResumeAppBar(),
+          new PatientResumeBody(PatientDao.getPatientById(args.id)),
         ],
       ),
     );

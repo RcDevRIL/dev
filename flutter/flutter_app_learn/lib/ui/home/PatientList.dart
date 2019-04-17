@@ -13,7 +13,7 @@ class PatientList extends StatelessWidget {
         child: new ListView.builder(
           itemExtent: 160.0,
           itemCount: PatientDao.patients.length,
-          itemBuilder: (_, index) => new PatientRow(PatientDao.patients[index]),
+          itemBuilder: (context, index) => new PatientRow(PatientDao.patients[index]),
         ),
       ),
     );
