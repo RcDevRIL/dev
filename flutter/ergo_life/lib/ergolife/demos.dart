@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import '../demo/cupertino_text_field_demo.dart';
+//import '../demo/cupertino_text_field_demo.dart';
 import '../demo/contacts_demo.dart';
 
 import 'icons.dart';
@@ -124,13 +124,13 @@ List<GalleryDemo> _buildGalleryDemos() {
 //      buildRoute: (BuildContext context) => DrawerDemo(),
 //    ),
 
-    GalleryDemo(
-      title: 'Text Fields',
-      icon: GalleryIcons.text_fields_alt,
-      feature: _kCupertinoComponents,
-      routeName: CupertinoTextFieldDemo.routeName,
-      buildRoute: (BuildContext context) => CupertinoTextFieldDemo(),
-    ),
+//    GalleryDemo(
+//      title: 'Text Fields',
+//      icon: GalleryIcons.text_fields_alt,
+//      feature: _kCupertinoComponents,
+//      routeName: CupertinoTextFieldDemo.routeName,
+//      buildRoute: (BuildContext context) => CupertinoTextFieldDemo(),
+//    ),
 
   ];
 

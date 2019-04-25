@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../Theme.dart' as Theme;
-import '../../model/Patients.dart';
-import 'PatientRow.dart';
+import '../theme.dart' as Theme;
+import '../model/Patients.dart';
+import '../ui_elements/PatientRow.dart';
 
 class PatientList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return new Flexible(
-
       child: new Container(
         color: Theme.Colors.planetPageBackground,
         child: new ListView.builder(
