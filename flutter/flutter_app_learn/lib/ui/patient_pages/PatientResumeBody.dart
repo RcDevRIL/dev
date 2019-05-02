@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../Theme.dart' as Theme;
+// import '../../Theme.dart' as Theme;
 import '../../model/Patient.dart';
 
-class PatientResumeBody extends StatelessWidget{
-
+class PatientResumeBody extends StatelessWidget {
   final Patient patient;
 
   PatientResumeBody(this.patient);
@@ -31,7 +30,7 @@ class PatientResumeBody extends StatelessWidget{
 //
 //              ),
 //          ),
-          Center(child: Text('${patient.name} Hello')),
+        Center(child: Text('${patient.name} Hello')),
 
 //        new Container(
 //          color: Theme.Colors.planetPageBackground,
@@ -50,29 +49,20 @@ class PatientResumeBody extends StatelessWidget{
 //                  //new Container(width: 24.0),
 //                  //new Icon(Icons.add_box, size: 20.0,
 //                  //color: Theme.Colors.planetPageBackground,),
- //                 //new Text(patient.pathologie, style: Theme.TextStyles.planetDistance),
-                ],
-
-
-
-
-
-
+        //                 //new Text(patient.pathologie, style: Theme.TextStyles.planetDistance),
+      ],
     );
 
-
-          //child: new Center(
-          //  child: new Hero(
-          //    tag: 'patient-icon-${patient.id}',
-          //    child: //new Text(patient.id),
-          //    new Image(
-          //      image: new AssetImage(patient.img),
-          //      height: 500,//,
-          //      width: 500,//Theme.Dimens.planetWidth,
-          //    ),
-          //  ),
-          //),
-
-
+    //child: new Center(
+    //  child: new Hero(
+    //    tag: 'patient-icon-${patient.id}',
+    //    child: //new Text(patient.id),
+    //    new Image(
+    //      image: new AssetImage(patient.img),
+    //      height: 500,//,
+    //      width: 500,//Theme.Dimens.planetWidth,
+    //    ),
+    //  ),
+    //),
   }
 }

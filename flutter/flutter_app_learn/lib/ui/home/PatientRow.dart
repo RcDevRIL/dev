@@ -3,8 +3,7 @@ import '../../Theme.dart' as Theme;
 import '../../model/Patient.dart';
 import '../patient_pages/PatientResumePage.dart';
 
-class PatientRow extends StatelessWidget{
-
+class PatientRow extends StatelessWidget {
   final Patient patient;
 
   PatientRow(this.patient);
@@ -16,8 +15,7 @@ class PatientRow extends StatelessWidget{
       margin: const EdgeInsets.only(left: 24.0),
       child: new Hero(
         tag: 'patient-icon-${patient.id}',
-        child:
-        new Container(
+        child: new Container(
           width: 75.0,
           height: 75.0,
           decoration: new BoxDecoration(
@@ -36,9 +34,9 @@ class PatientRow extends StatelessWidget{
         borderRadius: new BorderRadius.circular(8.0),
         boxShadow: <BoxShadow>[
           new BoxShadow(
-            color: Colors.black,
-            blurRadius: 10.0,
-            offset: new Offset(0.0, 10.0))
+              color: Colors.black,
+              blurRadius: 10.0,
+              offset: new Offset(0.0, 10.0))
         ],
       ),
       child: new Container(
@@ -48,24 +46,23 @@ class PatientRow extends StatelessWidget{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             new Text(patient.name, style: Theme.TextStyles.planetTitle),
-            new Text(patient.pathologie, style: Theme.TextStyles.planetLocation),
+            new Text(patient.pathologie,
+                style: Theme.TextStyles.planetLocation),
             new Container(
-              color: const Color(0xFF00C6FF),
-              width: 24.0,
-              height: 1.0,
-              margin: const EdgeInsets.symmetric(vertical: 8.0)
-            ),
+                color: const Color(0xFF00C6FF),
+                width: 24.0,
+                height: 1.0,
+                margin: const EdgeInsets.symmetric(vertical: 8.0)),
             new Row(
               children: <Widget>[
-                new Icon(Icons.phone, size: 14.0,
-                  color: Theme.Colors.planetDistance),
-                new Text(
-                  patient.numTel, style: Theme.TextStyles.planetDistance),
+                new Icon(Icons.phone,
+                    size: 14.0, color: Theme.Colors.planetDistance),
+                new Text(patient.numTel,
+                    style: Theme.TextStyles.planetDistance),
                 new Container(width: 24.0),
-                new Icon(Icons.add_location, size: 14.0,
-                  color: Theme.Colors.planetDistance),
-                new Text(
-                  patient.id, style: Theme.TextStyles.planetDistance),
+                new Icon(Icons.add_location,
+                    size: 14.0, color: Theme.Colors.planetDistance),
+                new Text(patient.id, style: Theme.TextStyles.planetDistance),
               ],
             )
           ],
@@ -79,32 +76,27 @@ class PatientRow extends StatelessWidget{
       child: new FlatButton(
         //différente méthode mais à utiliser plus tard pourquoi pas / base pour nouveau projet ?
         //https://flutter.dev/docs/cookbook/navigation/passing-data
-          onPressed: () => Navigator.pushNamed(
+        onPressed: () => Navigator.pushNamed(
               context,
               PatientResumePage.routeName,
-              arguments: PatientArgsForRoutes(
-                  patient.id
-              ),
-          ),
-          //_navigateTo(context, patient.id),
+              arguments: PatientArgsForRoutes(patient.id),
+            ),
+        //_navigateTo(context, patient.id),
 
-          child: new Stack(
-            children: <Widget>[
-              patientCard,
-              patientThumbnail
-            ],
-          ),
+        child: new Stack(
+          children: <Widget>[patientCard, patientThumbnail],
+        ),
       ),
     );
   }
 
-  void _navigateTo(BuildContext context, String id) {
-    //Routes.navigateTo(
-      //context,
-      //'/detail/${patient.id}',
-      //transition: TransitionType.fadeIn
-    //);
-  }
+  // void _navigateTo(BuildContext context, String id) {
+  //Routes.navigateTo(
+  //context,
+  //'/detail/${patient.id}',
+  //transition: TransitionType.fadeIn
+  //);
+  // }
   // user defined function
   void _showDialog(BuildContext context) {
     // flutter defined function
@@ -129,7 +121,8 @@ class PatientRow extends StatelessWidget{
     );
   }
 }
-class PatientArgsForRoutes{
+
+class PatientArgsForRoutes {
   final String id;
 
   PatientArgsForRoutes(this.id);
