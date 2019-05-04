@@ -47,6 +47,9 @@ class _LoginFormState extends State<LoginForm> {
         }
 
         return Form(
+          onChanged: () => _loginBloc.dispatch(OnFormUpdate(
+              userField: _usernameController.text,
+              pwField: _passwordController.text)),
           child: Column(
             children: [
               TextFormField(

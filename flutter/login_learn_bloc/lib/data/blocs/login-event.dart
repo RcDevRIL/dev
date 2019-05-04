@@ -18,3 +18,18 @@ class LoginButtonPressed extends LoginEvent {
   String toString() =>
       'LoginButtonPressed { username: $username, password: $password }';
 }
+
+class OnFormUpdate extends LoginEvent {
+  final String userField;
+  final String pwField;
+
+  OnFormUpdate({
+    @required this.userField,
+    @required this.pwField,
+  }) : super([userField, pwField]);
+
+  @override
+  String toString() {
+    return 'OnFormUpdate { userField: $userField, pwField: $pwField }';
+  }
+}

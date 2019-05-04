@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:login_learn_bloc/data/model/user-repo.dart';
 
-import 'package:login_learn_bloc/data/blocs/bloc.dart';
+import 'package:login_learn_bloc/data/blocs/blocs.dart';
 import 'package:login_learn_bloc/ui/elements/loading-indicator.dart';
 import 'package:login_learn_bloc/ui/home-page.dart';
 import 'package:login_learn_bloc/ui/login-page.dart';
@@ -19,7 +20,9 @@ class SimpleBlocDelegate extends BlocDelegate {
 
 void main() {
   BlocSupervisor().delegate = SimpleBlocDelegate();
-  runApp(AppStart(userRepository: UserRepository()));
+  runApp(AppStart(
+      userRepository:
+          UserRepository({'id': 'admin', 'mdp': 'admin', 'hasToken': 'yes'})));
 }
 
 class AppStart extends StatefulWidget {
@@ -50,6 +53,8 @@ class _AppState extends State<AppStart> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
     return BlocProvider<AuthenticationBloc>(
       bloc: authBloc,
       child: MaterialApp(

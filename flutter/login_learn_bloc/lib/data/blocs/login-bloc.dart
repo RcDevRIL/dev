@@ -30,17 +30,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (event is LoginButtonPressed) {
       yield LoginLoading();
 
-      try {
-        final token = await userRepository.authenticate(
-          username: event.username,
-          password: event.password,
-        );
-
+      final token = await userRepository.authenticate(
+        username: event.username,
+      );
+      if ('token' == token) {
         authenticationBloc.dispatch(LoggedIn(token: token));
         yield LoginInitial();
-      } catch (error) {
-        yield LoginFailure(error: error.toString());
-      }
+      } else
+        yield LoginFailure(error: token.toString());
+    }
+    if (event is OnFormUpdate) {
+      if (event.props[1] == 'admin')
+        yield LoginChanged();
+      else
+        yield LoginFailure(error: 'Wrong id');
     }
   }
 }
