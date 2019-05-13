@@ -18,16 +18,18 @@ namespace HitTheTarget
         Texture2D crosshairs_sprite;
         Texture2D background_sprite;
 
-        Vector2 targetPosition = new Vector2(300,300);
-
         MouseState mouseState;
+        
+        Vector2 targetPosition = new Vector2(300, 300);
         const int TARGET_RADIUS = 45;
-        int x;
-        int y;
+        const int CROSSHAIRS_RADIUS = 25;
+        float mouseTargetDist;
+
+
 
         int score = 0;
         float timer = 10f;
-        float mouseTargetDist;
+
         bool mReleased = true;
 
         public Game1()
@@ -35,6 +37,7 @@ namespace HitTheTarget
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
         }
 
         /// <summary>
@@ -88,12 +91,20 @@ namespace HitTheTarget
             if (timer > 0)
             {
                 timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                mouseState = Mouse.GetState();
+
                 mouseTargetDist = Vector2.Distance(targetPosition, new Vector2(mouseState.X, mouseState.Y));
-                if (mouseState.LeftButton == ButtonState.Released) mReleased = true;
-                //if (Mouse.GetState().LeftButton.ToString() == "Pressed")
+
+                if (mouseState.LeftButton == ButtonState.Released)
+                {
+                    mReleased = true;
+                }
+
                 if (mouseState.LeftButton == ButtonState.Pressed && mouseTargetDist < TARGET_RADIUS && mReleased == true)
                 {
                     Scored_Click();
+                    mReleased = false;
                 }
 
             }
@@ -114,13 +125,25 @@ namespace HitTheTarget
 
             if (timer > 0)
             {
-                spriteBatch.Draw(target_sprite, new Vector2(targetPosition.X, targetPosition.Y), Color.White);
+                spriteBatch.Draw(target_sprite, new Vector2(targetPosition.X - TARGET_RADIUS, targetPosition.Y - TARGET_RADIUS), Color.White);
 
+                if (mouseState.LeftButton == ButtonState.Pressed && mouseTargetDist > TARGET_RADIUS)
+                {
+                    spriteBatch.DrawString(gameFont, "Missed !", new Vector2(mouseState.Position.X, mouseState.Position.Y), Color.White);
+                }
+
+                spriteBatch.DrawString(gameFont, "Score : " + score.ToString(), new Vector2(3, 3), Color.White);
+                spriteBatch.DrawString(gameFont, "Temps : " + Math.Ceiling(timer).ToString(), new Vector2(500, 3), Color.White);
+            }
+            if (timer <= 0 && score > 5)
+            {
+                spriteBatch.DrawString(gameFont, "Tu as fait " + score.ToString() + ", pas mal!", new Vector2(250, 250), Color.WhiteSmoke);
+            }
+            if (timer <= 0 && score <= 5)
+            {
+                spriteBatch.DrawString(gameFont, "Tu as fait " + score.ToString() + ", apprend a viser...", new Vector2(250, 250), Color.WhiteSmoke);
             }
 
-
-            spriteBatch.DrawString(gameFont, "Score : " + score.ToString(), new Vector2(3, 3), Color.White);
-            spriteBatch.DrawString(gameFont, "Temps : " + Math.Ceiling(timer).ToString(), new Vector2(500, 3), Color.White);
 
             spriteBatch.End();
 
@@ -130,14 +153,9 @@ namespace HitTheTarget
         private void Scored_Click()
         {
             score++;
-            Random randX = new Random();
-            x = randX.Next(0, 800);
-            Random randY = new Random();
-            y = randX.Next(50, 400);
-
-            mReleased = false;
-            randX = null;
-            randY = null;
+            Random r = new Random();
+            targetPosition.X = r.Next(TARGET_RADIUS, graphics.PreferredBackBufferWidth - TARGET_RADIUS);
+            targetPosition.Y = r.Next(TARGET_RADIUS, graphics.PreferredBackBufferHeight - TARGET_RADIUS);
         }
     }
 }
