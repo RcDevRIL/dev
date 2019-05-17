@@ -6,6 +6,7 @@ import 'package:login_learn_bloc3/blocs/authentication/authentication_state.dart
 import 'package:login_learn_bloc3/blocs/authentication/login_form_bloc.dart';
 import 'package:login_learn_bloc3/widgets/pending_action.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AuthenticationPage extends StatefulWidget {
   @override
@@ -41,6 +42,8 @@ class AuthenticationPageState extends State<AuthenticationPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
     AuthenticationBloc bloc = BlocProvider.of<AuthenticationBloc>(context);
     return WillPopScope(
       onWillPop: _onWillPopScope,
@@ -65,7 +68,7 @@ class AuthenticationPageState extends State<AuthenticationPage> {
                     child: Center(child: Icon(Icons.check_circle, color: Colors.cyan, size: 50.0,))
                   );
                 }
-                
+
                 List<Widget> children = <Widget>[];
 
                 children.add(
@@ -133,44 +136,6 @@ class AuthenticationPageState extends State<AuthenticationPage> {
                         }
                     )
                 );
-
-                // Button to fake the authentication (success)
-                children.add(
-                  ListTile(
-                      title: RaisedButton(
-                        child: Text('Log in (success)'),
-                        onPressed: () {
-                            bloc.emitEvent(AuthenticationEventLogin(name: 'Didier'));
-                        },
-                      ),
-                    ),
-                );
-
-                // Button to fake the authentication (failure)
-                children.add(
-                  ListTile(
-                      title: RaisedButton(
-                        child: Text('Log in (failure)'),
-                        onPressed: () {
-                            bloc.emitEvent(AuthenticationEventLogin(name: 'failure'));
-                        },
-                      ),
-                    ),
-                );
-
-                // Button to redirect to the registration page
-                children.add(
-                  ListTile(
-                    title: RaisedButton(
-                      child: Text('Register'),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed('/register');
-                      },
-                    ),
-                  ),
-                );
-
                 // Display a text if the authentication failed
                 if (state.hasFailed){
                   children.add(
@@ -178,6 +143,7 @@ class AuthenticationPageState extends State<AuthenticationPage> {
                   );
                 }
 
+                
                 return SingleChildScrollView(
                   child: Column(
                     children: children,
@@ -191,3 +157,41 @@ class AuthenticationPageState extends State<AuthenticationPage> {
     );
   }
 }
+
+
+//                // Button to fake the authentication (success)
+//                children.add(
+//                  ListTile(
+//                      title: RaisedButton(
+//                        child: Text('Log in (success)'),
+//                        onPressed: () {
+//                            bloc.emitEvent(AuthenticationEventLogin(name: 'Didier'));
+//                        },
+//                      ),
+//                    ),
+//                );
+
+//                // Button to fake the authentication (failure)
+//                children.add(
+//                  ListTile(
+//                      title: RaisedButton(
+//                        child: Text('Log in (failure)'),
+//                        onPressed: () {
+//                            bloc.emitEvent(AuthenticationEventLogin(name: 'failure'));
+//                        },
+//                      ),
+//                    ),
+//                );
+
+//                // Button to redirect to the registration page
+//                children.add(
+//                  ListTile(
+//                    title: RaisedButton(
+//                      child: Text('Register'),
+//                      onPressed: () {
+//                        Navigator.of(context)
+//                            .pushNamed('/register');
+//                      },
+//                    ),
+//                  ),
+//                );

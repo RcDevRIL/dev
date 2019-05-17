@@ -1,4 +1,4 @@
-
+import 'package:flutter/services.dart';
 import 'package:login_learn_bloc3/widgets/log_out_button.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +12,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft]);
     return WillPopScope(
       onWillPop: _onWillPopScope,
       child: SafeArea(
