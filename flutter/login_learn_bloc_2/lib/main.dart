@@ -34,6 +34,15 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (context) => RealHomePage(),
     ));
   }
+  _onEmailChanged(LoginBloc bloc, String s){
+    bloc.emailChanged.add(s);
+    bloc.submitCheck;
+  }
+
+  _onPasswordChanged(LoginBloc bloc, String s){
+    bloc.passwordChanged.add(s);
+    bloc.submitCheck;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   stream: bloc.emailStream,
                   builder: (context, snapshot) {
                     return TextField(
-                      onChanged: (s) => bloc.emailChanged.add(s),
+                      onChanged: (s) => _onEmailChanged(bloc, s),
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -71,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   stream: bloc.passwordStream,
                   builder: (context, snapshot) {
                     return TextField(
-                      onChanged: (s) => bloc.passwordChanged.add(s),
+                      onChanged: (s) => _onPasswordChanged(bloc, s),
                       keyboardType: TextInputType.text,
                       obscureText: true,
                       decoration: InputDecoration(
@@ -91,8 +100,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     return RaisedButton(
                       color: Colors.blueAccent,
                       onPressed:
-                          snapshot.hasError ? () => _logon(context) : null,
-                      child: Text(snapshot.hasData.toString()),
+                          snapshot.hasData ? () => _logon(context) : null,
+                      child: Row(
+                        children: <Widget>[
+                          Text(snapshot.data.toString()),
+                          SizedBox(width: 50.0,),
+                          Text(snapshot.hasData.toString()),
+                          SizedBox(width: 50.0,),
+                          Text(snapshot.error.toString()),
+                          SizedBox(width: 50.0,),
+                          Text(snapshot.hasError.toString()),
+                        ],
+                      ),
                     );
                   }),
             ],
