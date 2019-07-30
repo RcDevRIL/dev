@@ -1,3 +1,4 @@
+import 'package:custom_drawer/theme.dart';
 import 'package:custom_drawer/widgets/custom-drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,19 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: CustomDrawer(),
+        appBar: AppBar(
+          title: Text("Test custom drawer"),
+          backgroundColor: drawerBackgroundColor,
+          elevation: 0,
+        ),
+        body: Stack(
+          children: <Widget>[
+            Container(
+              color: Colors.red,
+            ),
+            CustomDrawer(),
+          ],
+        ),
       ),
     );
   }

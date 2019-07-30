@@ -10,18 +10,19 @@ class CustomDrawer extends StatefulWidget {
 
 class _CustomDrawerState extends State<CustomDrawer>
     with SingleTickerProviderStateMixin {
-  double maxWidth = 250.0;
-  double minWidth = 70.0;
+  double maxWidth = 220.0;
+  double minWidth = 72.0;
   bool isCollapsed = false;
   AnimationController _animationController;
   Animation<double> widthAnimation;
+  int currentSelectedItem = 0;
 
   @override
   void initState() {
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 300),
+      duration: Duration(milliseconds: 350),
     );
     widthAnimation = Tween<double>(begin: maxWidth, end: minWidth)
         .animate(_animationController);
@@ -36,19 +37,37 @@ class _CustomDrawerState extends State<CustomDrawer>
           width: widthAnimation.value,
           color: drawerBackgroundColor,
           child: Column(
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
-                height: 50.0,
-              ),
               CollapsingListTile(
                 title: "Test Name",
                 icon: Icons.person,
                 animationController: _animationController,
               ),
+              Divider(
+                color: Colors.grey,
+                height: 40.0,
+                indent: 12.0,
+                endIndent: 12.0,
+              ),
               Expanded(
-                child: ListView.builder(
+                child: ListView.separated(
+                  separatorBuilder: (c, i) {
+                    return Divider(
+                      height: 12.0,
+                    );
+                  },
                   itemBuilder: (c, i) {
                     return CollapsingListTile(
+                      onTap: () {
+                        !isCollapsed
+                            ? setState(() {
+                                currentSelectedItem = i;
+                              })
+                            : setState(() {});
+                      },
+                      isSelected: currentSelectedItem == i,
                       title: navigationItems[i].title,
                       icon: navigationItems[i].iconData,
                       animationController: _animationController,
@@ -58,6 +77,7 @@ class _CustomDrawerState extends State<CustomDrawer>
                 ),
               ),
               FlatButton(
+                padding: EdgeInsets.all(0.0),
                 onPressed: () {
                   setState(() {
                     isCollapsed = !isCollapsed;
@@ -69,8 +89,8 @@ class _CustomDrawerState extends State<CustomDrawer>
                 child: AnimatedIcon(
                   icon: AnimatedIcons.close_menu,
                   progress: _animationController,
-                  color: Colors.white,
-                  size: 70.0,
+                  color: selectedColor,
+                  size: 50.0,
                 ),
               ),
               SizedBox(
