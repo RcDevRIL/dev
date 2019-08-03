@@ -39,35 +39,35 @@ What things you need to install and how to install them(nope!)
     
 ## Projects/Folders (sorted following repo structure)
 
-* **Alfred** :
+* [**Alfred**](https://github.com/RcDevRIL/dev/tree/master/Alfred) :
   - Attempt to code a bot connected to irc via nats
 
-* **Batch** :
+* [**Batch**](https://github.com/RcDevRIL/dev/tree/master/batch) :
   - AVD_LAUNCHER.bat :
     -  Used for launching an Android Virtual Device - should work on any windows system with minor changes
 
-* **config** :
+* [**config**](https://github.com/RcDevRIL/dev/tree/master/configs) :
   - folder i use to store some configs
 
-* **csharp** :
+* [**csharp**](https://github.com/RcDevRIL/dev/tree/master/csharp) :
   - Development repository for c# applications, using for example .NET CORE/ASP.NET
 
-* **Design Pattern** :
+* [**Design Pattern**](https://github.com/RcDevRIL/dev/tree/master/Design%20Pattern) :
   - Repo used during a course on the main Design Patterns out there
 
-* **Eval** :
+* [**Eval**](https://github.com/RcDevRIL/dev/tree/master/Eval) :
   - Exam during web HTML/CSS basics
 
-* **Dart/Flutter** :
+* [**Dart/Flutter**](https://github.com/RcDevRIL/dev/tree/master/flutter) :
   - Repository for experiments on flutter framework
 
-* **Javascript** :
+* [**Javascript**](https://github.com/RcDevRIL/dev/tree/master/Javascript) :
   - Repository for Javascript development
 
-* **Python** :
+* [**Python**](https://github.com/RcDevRIL/dev/tree/master/Python) :
   - Repository for Python development
 
-* **Web** :
+* [**Web**](https://github.com/RcDevRIL/dev/tree/master/Web) :
   - Repository for Web development
 
 ## Built With
