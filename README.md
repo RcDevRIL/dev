@@ -6,7 +6,7 @@ On pourra également y trouver des projets persos.
 
 A utiliser pour vous autant que vous le souhaiterez!!
 
-###############################################################################################
+  #########################################################################################
 
 # Draft dev repository
 
@@ -91,7 +91,7 @@ See also the list of [contributors](https://github.com/RcDevRIL/dev/contributors
 
 ## License
 
-This project is licensed under the GNU GENERAL PUBLIC LICENSE - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU GENERAL PUBLIC LICENSE - see the [LICENSE.md](https://github.com/RcDevRIL/dev/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 
