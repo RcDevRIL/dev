@@ -58,9 +58,6 @@ What things you need to install and how to install them(nope!)
 * **Eval** :
   - Exam during web HTML/CSS basics
 
-* **Alfred** :
-  - Attempt to code a bot connected to irc via nats
-
 * **Dart/Flutter** :
   - Repository for experiments on flutter framework
 
