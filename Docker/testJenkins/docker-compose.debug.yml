@@ -1,0 +1,14 @@
+version: '2.1'
+
+services:
+  dev:
+    image: dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005,quiet=y
+    ports:
+      - 8089:8089
+      - 5005:5005
+    
