@@ -5,19 +5,13 @@ COLOR 03
 TITLE POM.XML DEPENDENCY EXTRACTOR
 :: This batch extract direct dependencies in a pom.xml file chosen by user
 
-SET exeDirPath=%USERPROFILE%\AppData\Local\Android\Sdk\emulator\
-SET exeName=emulator.exe
-SET cmdArg=-avd
 SET pomDir=NULL
-SET javaDir=..\Java\
+SET javaDir=D:\dev\git-src-projects\dev\Java\
 ECHO    ============================
 ECHO             VARIABLES
 ECHO    ============================
 ECHO:
 TIMEOUT>NUL 1
-ECHO exeDirPath = %exeDirPath%
-ECHO exeName = %exeName%
-ECHO cmdArg = %cmdArg%
 ECHO pomDir = %pomDir%
 ECHO javaDir = %javaDir%
 TIMEOUT>NUL 1
@@ -49,18 +43,23 @@ DIR >%USERPROFILE%\Desktop\mavenProjects.txt
 SET /A c=0
 SET /A ans=0
 FOR /F "tokens=1,2,3,4,5 skip=7" %%G IN (%USERPROFILE%\Desktop\mavenProjects.txt)  DO (
-    ECHO %%J
     
-    SET /P "ans=        Voulez-vous analyser ce projet ? (ENTER 'y' to select one) "  
-    SET /A "c+=1"
-    SETLOCAL ENABLEDELAYEDEXPANSION
-    IF !ans! == y (
-        SET pomDir=%%J
+    
+    IF NOT %%J == octets (
+        ECHO %%J
+        SET /P "ans=        Voulez-vous analyser ce projet ? (ENTER 'y' to select one) "  
+        SET /A "c+=1"
+        SETLOCAL ENABLEDELAYEDEXPANSION
+        IF !ans! == y (
+            SET pomDir=%%J
+            GOTO :nextstep
+        ) 
+    ) ELSE (
         GOTO :nextstep
-    )  
+    )
+    
 )
 :nextstep
-DEL %USERPROFILE%\Desktop\mavenProjects.txt
 ECHO:
 ECHO:
 ECHO c = %c%, ans = %ans%
@@ -75,13 +74,12 @@ ECHO:
 
 IF !pomDir! == NULL (
     ECHO OUPS! DID YOU REALLY CHOOSE ONE..?
+    GOTO :stop
 ) ELSE (
     COPY NUL %USERPROFILE%\Desktop\pomDD.txt
     ECHO You chose the project named "%pomDir%"
-    ::START %exeDirPath%%exeName% %cmdArg% %pomDir:~0,-4%
     CD %pomDir%
     CMD /C mvn -o dependency:list >%USERPROFILE%\Desktop\pomDD.txt
-   :: BASH -C mvn -o dependency:list | grep ":.*:.*:compile" | sed "s/\[INFO\]    \([^:]*\):\([^:]*\):jar:\([^:]*\):compile/\1;\2;\3/" | sort -u >%USERPROFILE%\Desktop\test.txt
     for /l %%A in (1,1,2) do (
         <nul (set/p z=.)
         >nul timeout 1
@@ -89,16 +87,31 @@ IF !pomDir! == NULL (
     ECHO Done.
 )
 COPY NUL %USERPROFILE%\Desktop\pomDD2.txt
-FOR /F "tokens=1,2,3,4,5 skip=12" %%G IN (%USERPROFILE%\Desktop\pomDD.txt)  DO (  
-    ECHO %%H>>%USERPROFILE%\Desktop\pomDD2.txt
+:: Get the info needed
+FOR /F "tokens=1,2,3,4,5 skip=12" %%A IN (%USERPROFILE%\Desktop\pomDD.txt)  DO (  
+    ECHO %%B>>%USERPROFILE%\Desktop\pomDD2.txt
 )
-COPY NUL %USERPROFILE%\Desktop\pomDD3.txt
-FOR /F "tokens=*" %%A IN (%USERPROFILE%\Desktop\pomDD2.txt)  DO (
-    ECHO %%A
+COPY NUL %USERPROFILE%\Desktop\pomDD3.csv
+ECHO groupID;artifactID;version;scope>>%USERPROFILE%\Desktop\pomDD3.csv
+:: Parse the info
+FOR /F "tokens=* delims=:" %%A IN (%USERPROFILE%\Desktop\pomDD2.txt)  DO (
+    ECHO %%A parsed...
+    FOR /F "tokens=1,2,3,4,5 delims=:" %%B IN ("%%A") DO (
+        SET cd=%%C
+        IF !cd! == %javaDir%%pomDir% (
+            ECHO WRONG LINE
+        ) ELSE (
+            ECHO %%B;%%C;%%E;%%F>>%USERPROFILE%\Desktop\pomDD3.csv
+        )
+    )
+    ECHO DONE
 )
 
-
-
+:stop
+DEL %USERPROFILE%\Desktop\mavenProjects.txt
+DEL %USERPROFILE%\Desktop\pomDD.txt
+DEL %USERPROFILE%\Desktop\pomDD2.txt
+ENDLOCAL
 PAUSE>NUL
 EXIT /B 0
 ::Code|Couleur
