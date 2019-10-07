@@ -1,12 +1,14 @@
 @ECHO OFF
-MODE con cols=130 lines=500
+MODE con cols=150 lines=500
 ::wide screen
 COLOR 03
 TITLE POM.XML DEPENDENCY EXTRACTOR
 :: This batch extract direct dependencies in a pom.xml file chosen by user
 
+SETLOCAL ENABLEDELAYEDEXPANSION
 SET pomDir=NULL
-SET javaDir=D:\dev\git-src-projects\dev\Java\
+SET javaDir=C:\devs\devPackage\git-scm-resource\
+
 ECHO    ============================
 ECHO             VARIABLES
 ECHO    ============================
@@ -15,8 +17,8 @@ TIMEOUT>NUL 1
 ECHO pomDir = %pomDir%
 ECHO javaDir = %javaDir%
 TIMEOUT>NUL 1
-ECHO:
 
+ECHO:
 < nul (set/p z=Please wait)
 for /l %%A in (1,1,3) do (
     <nul (set/p z=.)
@@ -28,12 +30,13 @@ ECHO:
 ECHO:
 ECHO    ============================
 ECHO         LIST MAVEN PROJECTS
+ECHO       IN SPECIFIED DIRECTORY
 ECHO    ============================
 ECHO:
 :: Create temp file
 COPY NUL %USERPROFILE%\Desktop\mavenProjects.txt
-ECHO javaDir = %javaDir%
-:: If necessary switch disk before listing android folder
+ECHO:
+:: If necessary switch disk before listing folder
 :: CD /D C:
 :: Now move to the folder
 CD %javaDir%
@@ -42,14 +45,14 @@ DIR >%USERPROFILE%\Desktop\mavenProjects.txt
 
 SET /A c=0
 SET /A ans=0
-FOR /F "tokens=1,2,3,4,5 skip=7" %%G IN (%USERPROFILE%\Desktop\mavenProjects.txt)  DO (
+::adjust the 'skip' value so it doesn't list ".something" directories...
+FOR /F "tokens=1,2,3,4,5 skip=10" %%G IN (%USERPROFILE%\Desktop\mavenProjects.txt)  DO ( 
     
     
     IF NOT %%J == octets (
         ECHO %%J
         SET /P "ans=        Voulez-vous analyser ce projet ? (ENTER 'y' to select one) "  
         SET /A "c+=1"
-        SETLOCAL ENABLEDELAYEDEXPANSION
         IF !ans! == y (
             SET pomDir=%%J
             GOTO :nextstep
@@ -79,7 +82,14 @@ IF !pomDir! == NULL (
     COPY NUL %USERPROFILE%\Desktop\pomDD.txt
     ECHO You chose the project named "%pomDir%"
     CD %pomDir%
-    CMD /C mvn -o dependency:list >%USERPROFILE%\Desktop\pomDD.txt
+	ECHO:
+	< nul (set/p z=Please wait)
+	for /l %%A in (1,1,3) do (
+		<nul (set/p z=.)
+		TIMEOUT>NUL 1
+	)
+	ECHO:
+    CMD /C mvn dependency:list >%USERPROFILE%\Desktop\pomDD.txt
     for /l %%A in (1,1,2) do (
         <nul (set/p z=.)
         >nul timeout 1
@@ -92,7 +102,7 @@ FOR /F "tokens=1,2,3,4,5 skip=12" %%A IN (%USERPROFILE%\Desktop\pomDD.txt)  DO (
     ECHO %%B>>%USERPROFILE%\Desktop\pomDD2.txt
 )
 COPY NUL %USERPROFILE%\Desktop\pomDD3.csv
-ECHO groupID;artifactID;version;scope>>%USERPROFILE%\Desktop\pomDD3.csv
+ECHO groupID;artifactID;version;scope>>%USERPROFILE%\Desktop\pomDD-%pomDir%.csv
 :: Parse the info
 FOR /F "tokens=* delims=:" %%A IN (%USERPROFILE%\Desktop\pomDD2.txt)  DO (
     ECHO %%A parsed...
@@ -101,7 +111,7 @@ FOR /F "tokens=* delims=:" %%A IN (%USERPROFILE%\Desktop\pomDD2.txt)  DO (
         IF !cd! == %javaDir%%pomDir% (
             ECHO WRONG LINE
         ) ELSE (
-            ECHO %%B;%%C;%%E;%%F>>%USERPROFILE%\Desktop\pomDD3.csv
+            ECHO %%B;%%C;%%E;%%F>>%USERPROFILE%\Desktop\pomDD-%pomDir%.csv
         )
     )
     ECHO DONE
