@@ -1,0 +1,30 @@
+def notifcationMail='mamadou.kane@econocom.com'
+pipeline{
+    agent any
+    tools {
+        maven 'Maven'
+    }
+	triggers {
+		pollSCM '* * * * *'
+	}
+    stages{
+        stage("Build"){
+            steps{
+              sh 'mvn clean install -DskipTests' 
+              
+            }
+        }
+
+
+    }
+	
+	
+	post{
+
+    failure { 
+    
+         mail bcc: '', body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} is failed <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}",from: notifcationMail, to: notifcationMail;   
+            
+   } 
+}
+}
