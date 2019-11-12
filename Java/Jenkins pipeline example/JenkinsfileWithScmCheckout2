@@ -1,0 +1,33 @@
+pipeline{
+    agent any
+    tools {
+        maven 'Maven'
+    }
+    stages{
+        stage("Prepare"){
+            steps{
+               echo "prepare"
+               checkout scm
+            }
+        }
+        stage("Build") {
+			steps{
+             	sh 'mvn clean test'
+    		}
+        }
+    }
+post{
+    always {
+        cucumber buildStatus: 'UNSTABLE',
+                failedFeaturesNumber: -1,
+                failedScenariosNumber: -1,
+                skippedStepsNumber: -1,
+                failedStepsNumber: -1,
+                pendingStepsNumber: -1,
+                undefinedStepsNumber: -1,                
+                fileIncludePattern: '**/interfaceName-*-report.json',
+                sortingMethod: 'ALPHABETICAL',
+                trendsLimit: 100
+    }
+}
+}

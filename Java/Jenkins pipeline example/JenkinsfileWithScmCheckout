@@ -1,0 +1,32 @@
+pipeline{
+    agent any
+    stages{
+        stage("Prepare"){
+            steps{
+               echo "prepare" 
+               checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'gitRepo', url: 'git@ip.adress:generixCustomerInvoiceTest']]])
+            }
+        }
+        stage('Build') {
+    		steps{
+          
+             	sh '/opt/maven/bin/mvn clean test'
+    		}
+        }
+    }
+	post{
+	    always {
+	        cucumber buildStatus: 'UNSTABLE',
+	                failedFeaturesNumber: -1,
+	                failedScenariosNumber: -1,
+	                skippedStepsNumber: -1,
+	                failedStepsNumber: -1,
+	                pendingStepsNumber: -1,
+	                undefinedStepsNumber: -1,
+	                
+	                fileIncludePattern: '**/generix-func_tests-report.json',
+	                sortingMethod: 'ALPHABETICAL',
+	                trendsLimit: 100
+	    }
+	}
+}
