@@ -20,3 +20,5 @@ csharp/TASC/
 *.rar
 
 .vscode/
+
+flutter/custom_drawer/custom_drawer/ios/Flutter/flutter_export_environment.sh
