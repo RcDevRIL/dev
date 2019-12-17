@@ -1,6 +1,6 @@
 package com.cesi;
 
-import com.cesi.*;
+import com.cesi.Game;
 
 /**
  * Hello world!
