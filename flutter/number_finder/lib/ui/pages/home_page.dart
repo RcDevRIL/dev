@@ -31,7 +31,10 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Hello $nick'),
+            Text('Hello $nick',
+                style: TextStyle(
+                  fontSize: 32.0,
+                )),
             RaisedButton(
               onPressed: () async {
                 response = await Provider.of<GameAPI>(context)

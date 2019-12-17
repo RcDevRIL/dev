@@ -64,7 +64,7 @@ class GameAPI with ChangeNotifier {
                 if (nestedEntry.value == true)
                   return Response(json.encode(entry.value), 200);
                 else
-                  return Response('failure', 400);
+                  return Response('failure', 200);
               }
               break;
             case ('tries'):
