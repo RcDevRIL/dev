@@ -1,7 +1,9 @@
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:logger/logger.dart';
 import 'package:number_finder/data/models/user_repo.dart';
 import 'package:number_finder/data/services/game_api.dart';
 import 'package:number_finder/ui/pages/try_form.dart';
@@ -15,12 +17,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   static const String _title = 'NumberFinder';
+  final log = Logger();
   @override
   Widget build(BuildContext context) {
     Response response;
     String nick = Provider.of<UserRepo>(context).getNickname;
     return Scaffold(
       appBar: AppBar(
+        leading: Container(),
         title: const Text(_title),
       ),
       body: Center(
@@ -33,8 +37,12 @@ class _HomePageState extends State<HomePage> {
                 response = await Provider.of<GameAPI>(context)
                     .startGame(Provider.of<UserRepo>(context).getNickname);
                 if (response.statusCode == 200) {
-                  var decoded = jsonDecode(response.body);
-                  Provider.of<UserRepo>(context).token = decoded.token;
+                  LinkedHashMap decoded = jsonDecode(response.body);
+                  log.d(decoded);
+                  for (MapEntry entry in decoded.entries) {
+                    if (entry.key == 'token')
+                      Provider.of<UserRepo>(context).token = entry.value;
+                  }
 
                   Navigator.of(context).pushNamed(TryForm.routeName);
                 } else {
