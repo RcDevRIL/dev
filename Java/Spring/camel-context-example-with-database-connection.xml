@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring
+       http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean id="bridgePropertyPlaceholder" class="org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer">
+        <property name="location" value="file:${karaf.home}/etc/config/mlcSynchroTiers.properties"/>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="validationQuery" value="${jdbc.validationQuery}"/>
+    </bean>
+
+    <bean id="sql" class="org.apache.camel.component.sql.SqlComponent">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <bean class="com.econocom.camel.CamelRoute" id="myBuilder"/>
+    <camelContext id="mlcSynchroTiersContext" xmlns="http://camel.apache.org/schema/spring">
+        <routeBuilder ref="myBuilder"/>
+    </camelContext>
+
+</beans>

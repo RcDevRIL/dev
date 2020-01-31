@@ -24,7 +24,7 @@ class _CustomDrawerState extends State<CustomDrawer>
       vsync: this,
       duration: Duration(milliseconds: 350),
     );
-    widthAnimation = Tween<double>(begin: maxWidth, end: minWidth)
+    widthAnimation = Tween<double>(begin: minWidth, end: maxWidth)
         .animate(_animationController);
   }
 
@@ -62,10 +62,10 @@ class _CustomDrawerState extends State<CustomDrawer>
                     return CollapsingListTile(
                       onTap: () {
                         !isCollapsed
-                            ? setState(() {
+                            ? setState(() {})
+                            : setState(() {
                                 currentSelectedItem = i;
-                              })
-                            : setState(() {});
+                              });
                       },
                       isSelected: currentSelectedItem == i,
                       title: navigationItems[i].title,
@@ -87,7 +87,7 @@ class _CustomDrawerState extends State<CustomDrawer>
                   });
                 },
                 child: AnimatedIcon(
-                  icon: AnimatedIcons.close_menu,
+                  icon: AnimatedIcons.menu_close,
                   progress: _animationController,
                   color: selectedColor,
                   size: 50.0,
