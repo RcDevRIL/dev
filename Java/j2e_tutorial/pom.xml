@@ -34,10 +34,11 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.8</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -62,6 +63,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.cesi.rcdevril.j2e_tutorial.J2eTutorialApplication</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
