@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.cesi.rcdevril</groupId>
 	<artifactId>j2e_tutorial</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<name>j2e_tutorial</name>
 	<description>Training project</description>
 
@@ -39,11 +39,6 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.2.8</version>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
