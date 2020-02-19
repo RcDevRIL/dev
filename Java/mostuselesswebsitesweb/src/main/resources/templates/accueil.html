@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/main-layout3 :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #accueil-mainContent},
+                                                ~{:: #footer}
+                                               )}">
+
+
+<head>
+<title>Accueil</title>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<div id="accueil-mainContent" class ="row justify-content-center">
+
+		<h3 class="tm-blue-text tm-welcome-title tm-margin-b-45">Catégories
+			disponibles :</h3>
+
+		<div class="col col-4">
+			<div data-th-each="category: ${categories}">
+
+				<a data-th-href="@{${'/websites/' + category.id}}"
+					class="btn btn-outline-info btn-block block my-3" role="button"
+					data-th-text="${#strings.capitalize(category.name)}"></a>
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+</body>
+</html>

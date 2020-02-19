@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+	th:fragment="main-fragment (title, mainContent, footer)">
+
+<head>
+<meta charset="UTF-8">
+<title th:replace="${title}">Page 1 Title</title>
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet" media="screen" />
+
+<link
+	href="https://fonts.googleapis.com/css?family=Lobster&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+<body>
+	<header>
+		<div class="container">
+			<a href="/">Most useless websites</a>
+		</div>
+	</header>
+
+	<section class="container">
+		<div class="row">
+			<div class="col">
+				<ul>
+				<li><a href="/ajouter-categorie">Ajouter une catégorie</a></li>
+				<li><a href="/ajouter-site">Ajouter un site</a></li>
+				</ul>
+			</div>
+			<div class="col-9">
+				<article th:insert="${mainContent} ?: ~{}"></article>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div>
+			<!-- Optional JavaScript -->
+			<script src="/webjars/jquery/3.4.1/jquery.min.js" /></script>
+			<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+			<div th:insert="${footer} ?: ~{}"></div>
+		</div>
+	</footer>
+</body>
+</html>
