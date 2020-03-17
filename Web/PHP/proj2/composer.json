@@ -1,0 +1,15 @@
+{
+    "name": "rcdevril/first-composer",
+    "description": "my first composer",
+    "type": "project",
+    "authors": [
+        {
+            "name": "RcDevRIL",
+            "email": "romain.chevallier@econocom.com"
+        }
+    ],
+    "require": {
+        "cocur/slugify": "^4.0",
+        "smarty/smarty": "^3.1"
+    }
+}
