@@ -1,6 +1,15 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
 
+try{
+    $db = new PDO('mysql:host=localhost;dbname=php-cesi', 'root', '');
+} catch (Exception $e){
+    exit($e->getMessage());
+}
+
+$req = $db->query('SELECT title from events');
+$result = $req->fetchAll();
+
 $smarty = new Smarty();
 
 $smarty->debugging = true;
@@ -14,7 +23,7 @@ $events = ['virus', 'remote work', 'confinement'];
 
 $smarty->assign('site_title','Learn PHP and use Smarty!!');
 $smarty->assign('subtitle','variables:');
-$smarty->assign('events', ['virus', 'remote work', 'confinement']);
+$smarty->assign('events', $result);
 
 
 //** un-comment the following line to show the debug console

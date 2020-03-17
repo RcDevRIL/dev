@@ -22,7 +22,7 @@
     <hr>
 <ul>
     {foreach $events as $event}
-        <li>{$event}</li>
+        <li>{$event.title}</li>
     {/foreach}
 </ul>
     <!-- Optional JavaScript -->
