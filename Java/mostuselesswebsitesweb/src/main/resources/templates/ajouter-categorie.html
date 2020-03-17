@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/main-layout3 :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #accueil-mainContent},
+                                                ~{:: #footer}
+                                               )}">
+
+
+<head>
+<title>Image Challenge</title>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<div id="accueil-mainContent">
+
+		<h1 class="tm-blue-text tm-welcome-title tm-margin-b-45">Ajouter
+			une catégorie</h1>
+
+		<form th:action="@{/ajouter-categorie}" th:object="${category}"
+			method="post">
+			<div class="form-group">
+				<label for="nom">Nom</label> <input type="text" class="form-control"
+					id="nom" th:field="*{name}">
+				<div data-th-if="${#fields.hasErrors('name')}"
+					data-th-errors="*{name}" class="alert alert-danger"></div>
+
+
+			</div>
+			<button type="submit" class="btn btn-primary">Enregistrer</button>
+			<!-- TODO ew : mettre un fragment -->
+
+			<div data-th-if="${flashCategory != null}"
+				class="alert alert-success" role="alert">Catégorie enregistrée
+				avec succès.</div>
+
+		</form>
+
+	</div>
+</body>
+</html>

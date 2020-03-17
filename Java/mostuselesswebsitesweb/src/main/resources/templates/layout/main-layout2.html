@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+	th:fragment="main-fragment (title, mainContent, footer)">
+
+<head>
+<meta charset="UTF-8">
+<title th:replace="${title}">Page 1 Title</title>
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet" media="screen" />
+
+<link
+	href="https://fonts.googleapis.com/css?family=Lobster&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+<body>
+<div class="container">
+            <div class="row">
+                <div class="tm-left-right-container">
+                    <!-- Left column: logo and menu -->
+                    <div class="tm-blue-bg tm-left-column">                        
+                        <div class="tm-logo-div text-xs-center">
+                            <!-- <img src="img/tm-neaty-logo.png" alt="Logo"> -->
+                            <a href="/"><h1 class="tm-site-name">Most useless websites</h1></a>
+                        </div>
+                        <nav class="tm-main-nav">
+                            <ul class="tm-main-nav-ul">
+                                <li class="tm-nav-item">
+                                    <a href="/ajouter-categorie" class="tm-nav-item-link">Ajouter une catégorie</a>
+                                </li>
+                                <li class="tm-nav-item">
+                                <a href="/ajouter-site" class="tm-nav-item-link">Ajouter un site</a>
+                                </li>                              
+                            </ul>
+                        </nav>                                         
+                    </div> <!-- Left column: logo and menu -->
+                    
+                    <!-- Right column: content -->
+                    <div class="tm-right-column">
+                      
+                        <div class="tm-content-div">
+                            <!-- Welcome section -->
+                            <article id="welcome" class="tm-section" th:insert="${mainContent} ?: ~{}"></article>
+                           <!--  <section >
+                                <header>
+                                    <h2 class="tm-blue-text tm-welcome-title tm-margin-b-45">Welcome to Neaty Design</h2>
+                                </header>
+                                <p>Neaty is simple and clean design HTML CSS template for any kind of website. Feel free to use this layout. Please tell your friends about TemplateMo website. Thank you. Suspendisse imperdiet, felis eu hendrerit pretium, sapien mauris blandit arcu, et accumsan neque est ut erat. Vivamus eget tellus euismod, interdum nibh at, eleifend justo. Quisque placerat ante in ex tempor, ultrices bibendum nunc finibus. Etiam luctus nec eros vel pulvinar.</p>
+                            </section> -->
+                           
+                        </div>  
+                        
+                    </div> <!-- Right column: content -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+	<!-- <header>
+		<div class="container">
+			<a href="/">Most useless websites</a>
+		</div>
+	</header> -->
+
+	<!-- <section class="container">
+		<div class="row">
+			<div class="col">
+				<ul>
+				<li><a href="/ajouter-categorie">Ajouter une catégorie</a></li>
+				<li><a href="/ajouter-site">Ajouter un site</a></li>
+				</ul>
+			</div>
+			<div class="col-9">
+				<article th:insert="${mainContent} ?: ~{}"></article>
+			</div>
+		</div>
+	</section> -->
+
+	<footer>
+		<div>
+			<!-- Optional JavaScript -->
+			<script src="/webjars/jquery/3.4.1/jquery.min.js" /></script>
+			<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+			<div th:insert="${footer} ?: ~{}"></div>
+		</div>
+	</footer>
+</body>
+</html>

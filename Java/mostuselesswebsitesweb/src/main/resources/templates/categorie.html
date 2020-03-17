@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/main-layout3 :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #accueil-mainContent},
+                                                ~{:: #footer}
+                                               )}">
+
+
+<head>
+<title>Random webite</title>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<div id="accueil-mainContent">
+
+		<h1 data-th-text="${#strings.capitalize(category.name)}"
+			class="tm-blue-text tm-welcome-title tm-margin-b-45"></h1>
+
+		<div>
+
+			<a data-th-href="@{${website.url}}"
+				class="btn btn-outline-info btn-block block my-3" role="button"
+				target="_blank">Aller vers le site</a>
+
+
+
+
+		</div>
+	</div>
+
+	<div id="footer">
+		<script>
+			$(document).ready(function() {
+
+				$(".btn").click(function(event) {
+
+					//stop submit the form, we will post it manually.
+					// event.preventDefault();
+
+					fire_ajax_submit();
+
+				});
+
+			});
+
+			function fire_ajax_submit() {
+
+				$.ajax({
+					type : "POST",
+					contentType : "application/json",
+					url : "http://localhost:9090/websites/1",
+					/* data: JSON.stringify(search), */
+					dataType : 'json',
+					cache : false,
+					timeout : 600000,
+					success : function(data) {
+
+						$('.btn').text(data);
+
+					},
+					error : function(e) {
+
+						/*   var json = "<h4>Ajax Response</h4><pre>"
+						      + e.responseText + "</pre>";
+						  $('#feedback').html(json);
+
+						  console.log("ERROR : ", e);
+						  $("#btn-search").prop("disabled", false); */
+
+					}
+				});
+
+			}
+		</script>
+	</div>
+</body>
+</html>
