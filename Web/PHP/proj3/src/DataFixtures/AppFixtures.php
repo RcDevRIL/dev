@@ -14,7 +14,7 @@ class AppFixtures extends Fixture
 
         foreach ($events as $event){
             $e = new Event();
-            $e->setName('$event');
+            $e->setName($event);
             $e->setCreatedAt(new \DateTime());
             $manager->persist($e);
         }
