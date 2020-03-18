@@ -4,10 +4,11 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\EventRepository;
 
-    /**
-     * @Route("/admin", name="back.")
-     */
+/**
+ * @Route("/admin", name="back.")
+ */
 class BackController extends AbstractController
 {
     /**
@@ -21,11 +22,15 @@ class BackController extends AbstractController
     }
     /**
      * @Route("/tableau-de-bord", name="dashboard")
+     * @param EventRepository $eventRepository
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function dashboard()
+    public function dashboard(EventRepository $eventRepository)
     {
-        return $this->render('back/index.html.twig', [
-            'controller_name' => 'BackController',
+        $events = $eventRepository->findAll();
+        dump($events);
+        return $this->render('back/dashboard.html.twig', [
+            'events' => $events,
         ]);
     }
 }
