@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BackController!{% endblock %}
+
+{% block body %}
+<div class="container container-center">
+    <div class="row">
+        <h1>DASHBOARD</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                <th scope="row">{{ event.id }}</th>
+                <td>{{ event.name }}</td>
+                <td>{{ event.createdAt | date('d/m/Y') }}</td>
+                <td class="text right">
+                    <i class="fas fa-edit text-info"></i>
+                </td>
+                </tr>
+            {% endfor%}
+            </tbody>
+        </table>
+    </div>
+</div
+{% endblock %}
