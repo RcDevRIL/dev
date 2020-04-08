@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-export class Home extends React.Component {
+export class Chat extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={[styles.h1, styles.textBlue]}>Welcome on Home Page !</Text>
+                <Text>Welcome on Chat Page !</Text>
             </View>
         )
     }
@@ -18,6 +18,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    h1: { fontSize: 16 },
-    textBlue: { color: 'blue' }
 });
