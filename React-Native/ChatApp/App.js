@@ -1,11 +1,16 @@
 import React from 'react';
-
-import { Home } from './components';
+import { Router, Stack, Scene } from 'react-native-router-flux';
+import { Home, Chat } from './components';
 
 export default class App extends React.Component {
   render() {
     return (
-      <Home />
+      <Router>
+        <Stack key="root">
+          <Scene key="home" component={Home} title="Home Page" />
+          <Scene key="chat" component={Chat} title="Chat" />
+        </Stack>
+      </Router>
     );
   }
 }

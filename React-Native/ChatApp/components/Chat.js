@@ -5,11 +5,12 @@ export class Chat extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Welcome on Chat Page !</Text>
+                <Text style={[styles.h1, styles.textBlue]}>Welcome on Chat Page !</Text>
             </View>
         )
     }
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -18,4 +19,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    h1: { fontSize: 16 },
+    textBlue: { color: 'blue' }
 });
