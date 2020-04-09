@@ -1,12 +1,15 @@
 import React from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { connect } from 'react-redux';
+import { Text, View, StyleSheet, Button, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { TextInput } from 'react-native-gesture-handler';
+import { chatActions } from '../actions';
+
+@connect(() => ({}))
 export class Home extends React.Component {
 
     state = {
         user: '',
-        room: '',
+        room: ''
     }
 
     handleUserChange = user => {
@@ -18,36 +21,38 @@ export class Home extends React.Component {
     }
 
     handleChatPress = e => {
+        const { dispatch } = this.props;
         const { user, room } = this.state;
-        Actions.chat({ user: user, title: `Salon "${room}"` });
+        dispatch(chatActions.join(user, room));
+        Actions.chat({ title: `Salon "${room}"` });
     }
 
     render() {
-        const { user, room } = this.state;
+        const { user } = this.state;
+        const { room } = this.state;
         return (
             <View style={styles.container}>
-                <Text >Welcome !</Text>
+                <Text style={styles.h1}>Bienvenue !</Text>
+                <Text style={styles.label}>Nom d'utilisateur</Text>
                 <TextInput
                     value={user}
-                    placeholder="Nom d'utilisateur"
-                    style={styles.input}
                     onChangeText={this.handleUserChange}
-                    ref={input => { this.textInput = input }}
+                    style={styles.input}
+                    placeholder="Choississez un pseudo"
                 />
-                <Text >Room name: </Text>
+                <Text style={styles.label}>Salon</Text>
                 <TextInput
                     value={room}
-                    placeholder="Room name"
-                    style={styles.input}
                     onChangeText={this.handleRoomChange}
-                    ref={input => { this.textInput = input }}
+                    style={styles.input}
+                    placeholder="Choississez un salon de chat"
                 />
                 <Button
-                    title="Let's chat!"
-                    color='teal'
+                    title="Let's chat !"
                     onPress={this.handleChatPress}
                 />
             </View>
+
         );
     }
 }
@@ -55,24 +60,31 @@ export class Home extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ddd',
+        backgroundColor: '#CCC',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 16
+        padding: 8
     },
     h1: {
-        fontSize: 16
+        fontSize: 20
     },
-    textBlue: {
+    label: {
+        alignSelf: 'flex-start',
+        marginTop: 16,
+        textAlign: 'left'
+    },
+    big: {
+        fontSize: 20,
         color: 'blue'
     },
     input: {
-        backgroundColor: 'white',
-        borderStyle: 'solid',
+        backgroundColor: "white",
+        borderStyle: "solid",
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: "black",
+        borderRadius: 8,
         margin: 8,
-        width: '100%',
-        padding: 10
-    }
+        padding: 4,
+        width: '100%'
+    },
 });

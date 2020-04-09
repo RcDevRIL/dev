@@ -1,24 +1,34 @@
 import React from 'react';
-import { Home, Chat } from './components'; // Utiliser les accolades quand il n'y a qu'un sur les 2 qui utilise `default`
-import { Router, Stack, Scene } from 'react-native-router-flux';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './reducers';
 import { StyleSheet } from 'react-native';
+import { Router, Stack, Scene } from 'react-native-router-flux';
 
-// export function App() { // Version avec fonction
-export default class App extends React.Component { // Version avec classe
+import { Home, Chat } from './components';
+
+const store = createStore(rootReducer);
+
+export default class App extends React.Component {
   render() {
     return (
-      <Router navigationBarStyle={styles.appBarColor}>
-        <Stack key="root">
-          <Scene key="home" component={Home} title="Home" />
-          <Scene key="chat" component={Chat} />
-        </Stack>
-      </Router>
+      <Provider store={store}>
+        <Router navigationBarStyle={styles.navigationBarStyle} titleStyle={{ color: 'white' }}>
+          <Stack key="root">
+            <Scene key="home" component={Home} title="Home" />
+            <Scene key="chat" component={Chat} title="Chat" />
+          </Stack>
+        </Router>
+      </Provider>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  appBarColor: {
-    backgroundColor: 'slategray'
+  navigationBarStyle: {
+    backgroundColor: 'darkcyan',
   },
-});
+  titleStyle: {
+    color: 'white',
+  }
+})

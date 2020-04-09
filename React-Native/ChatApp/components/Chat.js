@@ -1,46 +1,47 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { Text, View, StyleSheet, FlatList, TextInput, Button } from 'react-native';
 import { MessageItem } from './MessageItem';
-import { FlatList } from 'react-native-gesture-handler';
 
-const messages = [
-    {
-        content: "Message 1",
-        author: "Robert",
-        created_at: new Date()
-    },
-    {
-        content: "Un message un peu trop long mais c'est juste pour voir comment ça rend",
-        author: "Amelie",
-        created_at: new Date()
-    },
-    {
-        content: "Message 3",
-        author: "Robert",
-        created_at: new Date()
-    },
-];
-
-
+@connect(({ chat:
+    { user,
+        room,
+        messages }
+}) => ({ user, room, messages }))
 export class Chat extends React.Component {
 
     getData() {
-        return messages.map((message, i) => ({ 
+        const { messages } = this.props;
+        return messages.map((message, i) => ({
             ...message, key: `message_${i}`
         }));
     }
 
     render() {
-        const { user } = this.props;
-        
+        const { user, room } = this.props;
+
         return (
             <View style={styles.container}>
-                <FlatList
+
+                <FlatList style={styles.list}
                     data={this.getData()}
                     renderItem={({ item: message }) =>
-                        <MessageItem user={user} message={message} /> 
+                        <MessageItem user={user} message={message} />
                     }
                 />
+
+                <View style={styles.composerContainer}>
+                    <TextInput
+
+                        style={styles.composerInput}
+                        placeholder="Saisir un message"
+                    />
+
+                    <Button
+                        title="Envoyer !"
+                    />
+                </View>
+
             </View>
         );
     }
@@ -49,7 +50,21 @@ export class Chat extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#eee',
         justifyContent: 'center',
+    },
+    list: {
+        flex: 1
+    },
+    composerContainer: {
+        flex: 0,
+        flexDirection: 'row',
+
+
+    },
+    composerInput: {
+        flex: 1,
+        backgroundColor: 'white',
+        paddingLeft: 8,
+        paddingRight: 8
     }
 });
