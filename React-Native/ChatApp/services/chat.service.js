@@ -10,7 +10,7 @@ class Chat {
         this.user = user || 'Anonymous';
         this.room = room || 'général';
         try {
-            this.db = new PouchDB();
+            this.db = new PouchDB(this.room);
             const response = await this.db.allDocs({
                 include_docs: true,
             });

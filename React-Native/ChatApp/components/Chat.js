@@ -11,7 +11,7 @@ import { MessageItem } from './MessageItem';
 export class Chat extends React.Component {
 
     getData() {
-        const { messages } = this.props;
+        const { messages, error } = this.props;
         return messages.map((message, i) => ({
             ...message, key: `message_${i}`
         }));
@@ -22,7 +22,9 @@ export class Chat extends React.Component {
 
         return (
             <View style={styles.container}>
-
+                {error &&
+                    <Text>Error: {error.message}</Text>
+                }
                 <FlatList style={styles.list}
                     data={this.getData()}
                     renderItem={({ item: message }) =>

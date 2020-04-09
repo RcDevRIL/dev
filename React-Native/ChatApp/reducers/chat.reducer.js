@@ -31,7 +31,12 @@ export const chat = function (state = initState, action) {
         case 'JOIN_SUCCESS':
             return {
                 ...state,
-                message: action.messages
+                messages: action.messages
+            };
+        case 'FAILURE':
+            return {
+                ...state,
+                error: action.error
             };
     }
 
