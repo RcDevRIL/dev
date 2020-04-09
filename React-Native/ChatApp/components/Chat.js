@@ -28,7 +28,10 @@ export class Chat extends React.Component {
     handleSendMsg = e => {
         const { dispatch } = this.props;
         const { content } = this.state;
-        dispatch(chatActions.sendMessage({ content }));
+        if (content != '') {
+            dispatch(chatActions.sendMessage({ content }));
+            this.setState({ content: '' });
+        }
     }
 
     render() {
