@@ -1,12 +1,11 @@
 import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'react-redux'
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Router, Stack, Scene } from 'react-native-router-flux';
-
 import { Home, Chat } from './components';
+import thunk from 'redux-thunk';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

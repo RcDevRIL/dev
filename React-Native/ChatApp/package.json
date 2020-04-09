@@ -21,6 +21,7 @@
     "react-native-screens": "~2.2.0",
     "react-native-web": "~0.11.7",
     "react-redux": "^7.2.0",
+    "react-thunk": "^1.0.0",
     "redux": "^4.0.5",
     "redux-func": "^0.1.0-alpha.1",
     "redux-thunk": "^2.3.0"
