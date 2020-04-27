@@ -16,6 +16,8 @@ export class Chat extends React.Component {
         content: ''
     }
 
+    listRef = React.createRef();
+
     getData() {
         const { messages } = this.props;
         return messages.map((message, i) => ({
@@ -47,6 +49,9 @@ export class Chat extends React.Component {
                     renderItem={({ item: message }) =>
                         <MessageItem user={user} message={message} />
                     }
+                    ref={ref => this.listRef = ref}
+                    onContentSizeChange={() => this.listRef.scrollToEnd({ animated: true })}
+                    onLayout={() => this.listRef.scrollToEnd({ animated: true })}
                 />
 
                 <View style={styles.composerContainer}>
@@ -80,8 +85,6 @@ const styles = StyleSheet.create({
     composerContainer: {
         flex: 0,
         flexDirection: 'row',
-
-
     },
     composerInput: {
         flex: 1,

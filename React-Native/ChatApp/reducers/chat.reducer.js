@@ -1,21 +1,7 @@
 const initState = {
-    user: "Robert",
-    room: null,
-    messages: [
-        {
-            content: 'Message nul 1',
-            author: 'Robert',
-            created_at: new Date()
-        }, {
-            content: 'Message trop long pour tenir sur une ligne, enfin, sauf si t\'as un écran de ouf',
-            author: 'Amelie',
-            created_at: new Date()
-        }, {
-            content: 'Message nul 2',
-            author: 'Robert',
-            created_at: new Date()
-        }
-    ]
+    user: "Romain",
+    room: "Général",
+    messages: []
 }
 
 export const chat = function (state = initState, action) {
@@ -36,6 +22,7 @@ export const chat = function (state = initState, action) {
                 error: null
             };
         case 'FAILURE':
+        case 'SYNC_FAILURE':
             return {
                 ...state,
                 error: action.error
@@ -47,6 +34,11 @@ export const chat = function (state = initState, action) {
                     ...state.messages,
                     action.message,
                 ],
+            }
+        case 'SYNC_SUCCESS':
+            return {
+                ...state,
+                messages: action.messages
             }
         default:
             return state;
