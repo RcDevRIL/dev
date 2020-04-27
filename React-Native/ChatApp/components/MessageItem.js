@@ -16,6 +16,11 @@ export class MessageItem extends React.Component {
                 borderBottomLeftRadius: isAuthor ? 16 : 0,
                 borderBottomRightRadius: isAuthor ? 0 : 16,
             }]}>
+                {!isAuthor &&
+                    <Text style={{ fontWeight: 'bold', fontSize: 11 }}>
+                        {author}
+                    </Text>
+                }
                 <Text style={[styles.content, { color: isAuthor ? 'white' : 'black' }]}>{content}</Text>
                 <Text style={[styles.timestamp, {
                     color: isAuthor ? '#DDD' : '#555'
