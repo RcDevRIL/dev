@@ -21,6 +21,7 @@ csharp/TASC/
 **/.vscode/*
 !yarn.lock
 .vscode/
+!Splunk/**/*.zip
 
 flutter/custom_drawer/custom_drawer/ios/Flutter/flutter_export_environment.sh
 

@@ -1,0 +1,283 @@
+<form theme="dark">
+  <label>Analyse prénoms de 1995 à 2016</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="radio" token="top_max_token">
+      <label>Nombre de prénoms à afficher</label>
+      <choice value="10">10</choice>
+      <choice value="20">20</choice>
+      <choice value="100">100</choice>
+      <choice value="1000">Max</choice>
+      <default>10</default>
+      <initialValue>10</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Top $top_max_token$ des prénoms en France de 1995 à 2016</title>
+      <table>
+        <search>
+          <query>index="prenoms" source="nat2018.csv"
+| search preusuel!="_PRENOMS_RARES" (annais&gt;=1995 AND annais&lt;=2016)
+| stats sum(nombre) by preusuel
+| sort -sum(nombre)
+| head $top_max_token$
+| rename preusuel as Prénom, sum(nombre) as Nombre</query>
+          <earliest>0</earliest>
+          <latest></latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Top $top_max_token$ des prénoms en Belgique de 1995 à 2016</title>
+      <table>
+        <search>
+          <query>index="prenoms" source="First names in Belgium 1995-2016 cleaned.csv"
+| stats sum(Count) by Name
+| eval Name=upper(Name)
+| sort -sum(Count)
+| head $top_max_token$
+| rename Name as Prénom, sum(Count) as Nombre</query>
+          <earliest>0</earliest>
+          <latest></latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Top $top_max_token$ des prénoms masculins en France de 1995 à 2016</title>
+      <chart>
+        <search>
+          <query>index="prenoms" source="nat2018.csv"
+| search preusuel!="_PRENOMS_RARES" sexe=1 (annais&gt;=1995 AND annais&lt;=2016)
+| stats sum(nombre) by preusuel
+| sort -sum(nombre)
+| head $top_max_token$
+| rename preusuel as Prénom, sum(nombre) as Nombre</query>
+          <earliest>0</earliest>
+          <latest></latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Top $top_max_token$ des prénoms masculins en Belgique de 1995 à 2016</title>
+      <chart>
+        <search>
+          <query>index="prenoms" source="First names in Belgium 1995-2016 cleaned.csv"
+| search Gender="Boys"
+| stats sum(Count) by Name
+| eval Name=upper(Name)
+| sort -sum(Count)
+| head $top_max_token$
+| rename Name as Prénom, sum(Count) as Nombre</query>
+          <earliest>0</earliest>
+          <latest></latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Top $top_max_token$ des prénoms féminins en France 1995 à 2016</title>
+      <chart>
+        <search>
+          <query>index="prenoms" source="nat2018.csv"
+| search preusuel!="_PRENOMS_RARES" sexe=2 (annais&gt;=1995 AND annais&lt;=2016)
+| stats sum(nombre) by preusuel
+| sort -sum(nombre)
+| head $top_max_token$
+| rename preusuel as Prénom, sum(nombre) as Nombre</query>
+          <earliest>0</earliest>
+          <latest></latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Top $top_max_token$ des prénoms féminins en Belgique de 1995 à 2016</title>
+      <chart>
+        <search>
+          <query>index="prenoms" source="First names in Belgium 1995-2016 cleaned.csv"
+| search Gender="Girls"
+| stats sum(Count) by Name
+| eval Name=upper(Name)
+| sort -sum(Count)
+| head $top_max_token$
+| rename Name as Prénom, sum(Count) as Nombre</query>
+          <earliest>0</earliest>
+          <latest></latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Top $top_max_token$ des prénoms masculins en France en $year_token_1$</title>
+      <input type="dropdown" token="year_token_1">
+        <label>Année</label>
+        <fieldForLabel>Année</fieldForLabel>
+        <fieldForValue>Year</fieldForValue>
+        <search>
+          <query>index="prenoms" source="First names in Belgium 1995-2016 cleaned.csv"
+| table Year
+| dedup Year
+| sort -Year</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <initialValue>2016</initialValue>
+        <default>2016</default>
+      </input>
+      <chart>
+        <search>
+          <query>index="prenoms" source="nat2018.csv"
+| search preusuel!="_PRENOMS_RARES" sexe=1 annais=$year_token_1$
+| stats sum(nombre) by preusuel
+| sort -sum(nombre)
+| head $top_max_token$
+| rename preusuel as Prénom, sum(nombre) as Nombre</query>
+          <earliest>0</earliest>
+          <latest></latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="height">274</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Top $top_max_token$ des prénoms masculins en Belgique en $year_token_3$</title>
+      <input type="dropdown" token="year_token_3">
+        <label>Année</label>
+        <default>2016</default>
+        <initialValue>2016</initialValue>
+        <fieldForLabel>Année</fieldForLabel>
+        <fieldForValue>Year</fieldForValue>
+        <search>
+          <query>index="prenoms" source="First names in Belgium 1995-2016 cleaned.csv"
+| table Year
+| dedup Year
+| sort -Year</query>
+        </search>
+      </input>
+      <chart>
+        <search>
+          <query>index="prenoms" source="First names in Belgium 1995-2016 cleaned.csv"
+| search Gender="Boys" Year=$year_token_3$
+| stats sum(Count) by Name
+| eval Name=upper(Name)
+| sort -sum(Count)
+| head $top_max_token$
+| rename Name as Prénom, sum(Count) as Nombre</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Top $top_max_token$ des prénoms féminins en France en $year_token_2$</title>
+      <input type="dropdown" token="year_token_2">
+        <label>Année</label>
+        <default>2016</default>
+        <initialValue>2016</initialValue>
+        <fieldForLabel>Année</fieldForLabel>
+        <fieldForValue>Year</fieldForValue>
+        <search>
+          <query>index="prenoms" source="First names in Belgium 1995-2016 cleaned.csv"
+| table Year
+| dedup Year
+| sort -Year</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+      </input>
+      <chart>
+        <search>
+          <query>index="prenoms" source="nat2018.csv"
+| search preusuel!="_PRENOMS_RARES" sexe=2 annais=$year_token_2$
+| stats sum(nombre) by preusuel
+| sort -sum(nombre)
+| head $top_max_token$
+| rename preusuel as Prénom, sum(nombre) as Nombre</query>
+          <earliest>0</earliest>
+          <latest></latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Top $top_max_token$ des prénoms féminins en Belgique en $year_token_4$</title>
+      <input type="dropdown" token="year_token_4">
+        <label>Année</label>
+        <default>2016</default>
+        <initialValue>2016</initialValue>
+        <fieldForLabel>Année</fieldForLabel>
+        <fieldForValue>Year</fieldForValue>
+        <search>
+          <query>index="prenoms" source="First names in Belgium 1995-2016 cleaned.csv"
+| table Year
+| dedup Year
+| sort -Year</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+      </input>
+      <chart>
+        <search>
+          <query>index="prenoms" source="First names in Belgium 1995-2016 cleaned.csv"
+| search Gender="Girls" Year=$year_token_4$
+| stats sum(Count) by Name
+| eval Name=upper(Name)
+| sort -sum(Count)
+| head $top_max_token$
+| rename Name as Prénom, sum(Count) as Nombre</query>
+          <earliest>0</earliest>
+          <latest></latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+</form>
