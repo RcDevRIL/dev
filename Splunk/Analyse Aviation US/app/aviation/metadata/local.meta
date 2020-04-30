@@ -1,0 +1,43 @@
+[app/ui]
+version = 8.0.3
+modtime = 1588158864.531856500
+
+[app/launcher]
+version = 8.0.3
+modtime = 1588158864.539834000
+
+[indexes/aviation]
+owner = rcdevril
+version = 8.0.3
+modtime = 1588160662.060279600
+
+[views/analyse_aviation]
+access = read : [ * ], write : [ admin, power ]
+export = none
+owner = rcdevril
+version = 8.0.3
+modtime = 1588171339.664974100
+
+[transforms/compagnies]
+export = none
+owner = rcdevril
+version = 8.0.3
+modtime = 1588164514.705656100
+
+[transforms/aeroports]
+export = none
+owner = rcdevril
+version = 8.0.3
+modtime = 1588164521.695252600
+
+[lookups/airport_id.csv]
+export = none
+owner = rcdevril
+version = 8.0.3
+modtime = 1588164533.963412900
+
+[lookups/compagny_id.csv]
+export = none
+owner = rcdevril
+version = 8.0.3
+modtime = 1588164538.897105100
