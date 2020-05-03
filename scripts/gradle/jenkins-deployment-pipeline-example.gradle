@@ -1,0 +1,37 @@
+pipeline{
+    agent any
+    // This step tells Jenkins which tool to use for pipeline
+    tools {
+        maven 'Maven'
+    }
+    stages{
+        // This step tells Jenkins how to clone source code
+        stage("checkout SCM"){
+            // Trigger git clone on the specified branch
+        }
+        // This step will execute building of artifacts
+        stage("Build"){
+            // Trigger Maven "clean package" goal that will execute unit tests and build the JAR file if success
+        }
+        // This step will execute static code analysis with the help of SonarQube server
+        stage('SonarQube analysis') {
+            // Trigger SonarQube specific packaging and send it to our server
+        }
+        // This step will wait for SonarQube analysis result
+        stage("Quality Gate"){
+            // Set a timeout of 2 minutes
+            options { timeout(time: 2, unit: 'MINUTES') }
+            // If SonarQube respond with a failure, we throw an error to stop pipeline
+            if (qg.status.toLowerCase() == 'failure') {
+                error "Pipeline aborted due to quality gate failure"
+            }
+        }
+        // This step will deploy artifacts if previous ones were a success
+        stage("Deploy") {
+            def servers = ['JBOSS Fuse DEV', 'JBOSS Fuse INT']
+            for (server in servers){
+                // Deploy artifact to selected servers
+            }
+        }
+    }
+}
