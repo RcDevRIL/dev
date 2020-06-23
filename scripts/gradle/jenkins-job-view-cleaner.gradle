@@ -1,0 +1,43 @@
+// CONSTANTS
+silentRun = getProperty("SILENT_RUN")
+viewName = getProperty("VIEW_NAME")
+// FUNCTIONS
+def now(){new Date()}
+def log(msg) {
+  println "[" + now().format("dd/MM/yyyy HH:mm:ss.SSS") + "] - " + msg
+}
+def deleteJobs(){
+  def view = hudson.model.Hudson.instance.getView(viewName)
+  if(view.items.isEmpty()){
+      log("No jobs to delete in view '" + viewName + "'")
+      return
+  }
+  view.items.each() {
+    jobname = it.fullDisplayName    
+    log("Deleting job '" + jobname + "'")
+    if(silentRun == "false") it.delete()
+  }
+}
+def scriptExecDuration(startDate){groovy.time.TimeCategory.minus(now(), startDate)}
+// SCRIPT
+pipeline{
+    agent any
+    stages{
+        stage("Delete Jobs"){
+            steps{
+                script{
+                    startDate = now()
+                    log("Start job cleaning script on '" + viewName + "' job view.")
+                    try{
+                        deleteJobs()
+                        log("Job cleaning script success after " + scriptExecDuration(startDate) + "!")
+                    } catch(Exception e) {
+                        log("An error occured: ${e}")
+                        log("Script aborted after " + scriptExecDuration(startDate) + ".")
+                        throw e
+                    }
+                }
+            }
+        }
+    }
+}
