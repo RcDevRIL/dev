@@ -1,0 +1,32 @@
+[
+{
+  "First name": "Andrée",
+  "Last name": "Rodrigues",
+  "Job Title": "Officier de la marine marchande",
+  "Address": "42, avenue de Grondin - 12362 Lelievre"
+},
+{
+  "First name": "Josette",
+  "Last name": "Legros",
+  "Job Title": "Collecteur de fonds",
+  "Address": "avenue de Blondel - 00350 Bailly"
+},
+{
+  "First name": "Henri",
+  "Last name": "Vasseur",
+  "Job Title": "Chef de chantier en installations électriques",
+  "Address": "15, boulevard Aimé Petitjean - 59581 Sainte Martine"
+},
+{
+  "First name": "Paul",
+  "Last name": "Legrand",
+  "Job Title": "Restaurateur d'oeuvres d'art",
+  "Address": "687, rue Hélène Launay - 98876 Ferrand"
+},
+{
+  "First name": "Nathalie",
+  "Last name": "Merle",
+  "Job Title": "Psychologue",
+  "Address": "576, rue Colin - 77473 GilbertVille"
+}
+]

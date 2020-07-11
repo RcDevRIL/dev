@@ -1,0 +1,21 @@
+{
+    "local": {
+        "leases": [
+            {
+                "mac": "02:00:c0:a8:00:66",
+                "name": "pcxubuntu",
+                "address": "192.168.0.200"
+            },
+            {
+                "mac": "02:00:c0:a8:00:67",
+                "name": "pcxubuntu",
+                "address": "192.168.0.201"
+            },
+            {
+                "mac": "02:00:c0:a8:00:68",
+                "name": "pcxubuntu",
+                "address": "192.168.0.202"
+            }
+        ]
+    }
+}
