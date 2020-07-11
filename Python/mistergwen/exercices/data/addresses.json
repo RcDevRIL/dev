@@ -1,0 +1,50 @@
+[
+    {
+        "address": "192.168.0.0",
+        "mask": "255.255.255.0",
+        "dynamicRanges": [
+            {
+                "low": "192.168.0.5",
+                "high": "192.168.0.12",
+                "only_unknown": true
+            },
+            {
+                "low": "192.168.0.50",
+                "high": "192.168.0.55",
+                "only_unknown": false
+            }
+        ]
+    },
+    {
+        "address": "192.168.0.0",
+        "mask": "255.255.255.0",
+        "dynamicRanges": [
+            {
+                "low": "192.168.0.12",
+                "high": "192.168.0.45",
+                "only_unknown": true
+            },
+            {
+                "low": "192.168.0.8",
+                "high": "192.168.0.35",
+                "only_unknown": false
+            }
+        ]
+    },
+    {
+        "address": "192.168.0.1",
+        "mask": "255.255.255.0",
+        "dynamicRanges": [
+            {
+                "low": "192.168.0.5",
+                "high": "192.168.0.12",
+                "only_unknown": true
+            },
+            {
+                "low": "192.168.0.50",
+                "high": "192.168.0.55",
+                "only_unknown": false
+            }
+        ]
+    }
+]
