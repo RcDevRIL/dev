@@ -1,5 +1,5 @@
 var lcov2badge = require('lcov2badge');
-lcov2badge.badge('../../proto_madera_front/coverage/lcov.info', function(err, svgBadge){
+lcov2badge.badge('../../cesi_covid_19_tracker/coverage/lcov.info', function(err, svgBadge){
     if (err) throw err;
     console.log(svgBadge);
 });
